@@ -1,2 +1,2 @@
-# gas-eco
-Projeto para desenvolvimento do front-end da plataforma web da gas-eco
+# finance-web
+Projeto para desenvolvimento do front-end da plataforma web do finance-web
