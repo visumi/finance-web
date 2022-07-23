@@ -10,6 +10,7 @@ import './App.css';
 import Images from './utils/images';
 
 const App = () => {
+  console.log('Desenvolvido por Vinícius Isumi - https://isumi.com.br')
   return (
     <div className='flex flex-col h-screen bg-no-repeat bg-cover bg-poly'>
       <div className='relative flex flex-col p-16 mx-auto my-auto rounded-lg shadow-lg bg-purple-50'>
@@ -69,7 +70,7 @@ const App = () => {
                 weight='fill'
               />
               <span className='font-medium text-purple-800'>
-                Relatórios de gastos mensais.
+                Relatório de gastos mensais.
               </span>
             </div>
           </div>
