@@ -19,7 +19,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={user?.loggedIn ? <Dashboard /> : <Login />} />
+        <Route path='/' element={<Login />} />
+        <Route path='/dashboard' element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
