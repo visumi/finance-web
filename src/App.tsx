@@ -6,11 +6,30 @@ import {
   TrendUp,
   Wallet,
 } from 'phosphor-react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Images from './utils/images';
 
 const App = () => {
-  console.log('Desenvolvido por Vinícius Isumi - https://isumi.com.br')
+  console.log('Desenvolvido por Vinícius Isumi - https://isumi.com.br');
+
+  const signIn = (event: any) => {
+    event.preventDefault();
+    window.open('http://localhost:4000/auth/google', '_self');
+  };
+
+  const [user, setUser] = useState(() => ({
+    loggedIn: false,
+  }));
+
+  useEffect(() => {
+    fetch('http://localhost:4000/account', { credentials: 'include' })
+      .then((r) => r.json())
+      .then((data) => {
+        setUser({ ...data });
+      });
+  }, []);
+
   return (
     <div className='flex flex-col h-screen bg-no-repeat bg-cover bg-poly'>
       <div className='relative flex flex-col p-16 mx-auto my-auto rounded-lg shadow-lg bg-purple-50'>
@@ -31,7 +50,7 @@ const App = () => {
         >
           <path
             fill='#a855f7'
-            fill-opacity='1'
+            fillOpacity='1'
             d='M0,96L34.3,106.7C68.6,117,137,139,206,170.7C274.3,203,343,245,411,234.7C480,224,549,160,617,149.3C685.7,139,754,181,823,213.3C891.4,245,960,267,1029,250.7C1097.1,235,1166,181,1234,160C1302.9,139,1371,149,1406,154.7L1440,160L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z'
           ></path>
         </svg>
@@ -79,7 +98,10 @@ const App = () => {
           Entre agora mesmo
         </h2>
         <div className='mx-auto mt-8'>
-          <button className='bg-[#4285F4] w-60 h-12 rounded-md relative hover:ring ring-blue-200'>
+          <button
+            onClick={(e) => signIn(e)}
+            className='bg-[#4285F4] w-60 h-12 rounded-md relative hover:ring ring-blue-200'
+          >
             <div>
               <div className='absolute flex w-10 h-10 bg-white rounded-sm top-1 left-1'>
                 <div className='mx-auto my-2'>
