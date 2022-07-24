@@ -7,6 +7,7 @@ module.exports = {
     },
     backgroundImage: {
       'poly': "url('./src/assets/bg.svg')",
+      'waves': "url('./src/assets/bg-waves.svg')",
     },
   },
 };
