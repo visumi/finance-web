@@ -32,7 +32,7 @@ const Dashboard = ({ user }: DashboardProps) => {
               {user?.username?.toUpperCase() || 'FINN THE HUMAN'}
             </h1>
             <span className='font-medium text-purple-50'>
-              #{user?.id || '???'}
+              #{user?.id || '0000'}
             </span>
           </div>
           <SignOut
@@ -44,7 +44,7 @@ const Dashboard = ({ user }: DashboardProps) => {
         </div>
         <div className='w-2/5 p-4 mx-auto mb-4 bg-white rounded-lg shadow-md'>
           <Meta />
-          <button className='flex w-full py-2 mt-4 bg-purple-600 rounded-full hover:bg-purple-500 text-purple-50'>
+          <button className='flex w-full py-2 mt-4 bg-gradient-to-r from-purple-600 to-purple-800 rounded-full hover:bg-gradient-to-r hover:from-purple-600 hover:to-purple-500 text-purple-50'>
             <Plus className='my-auto ml-auto' size={24} weight='bold' />
             <span className='my-auto ml-2 mr-auto text-lg text-medium'>
               Novo gasto
@@ -56,5 +56,7 @@ const Dashboard = ({ user }: DashboardProps) => {
     </div>
   );
 };
+
+Dashboard.defaultProps = { user: { loggedIn: false } };
 
 export default Dashboard;

@@ -1,6 +1,6 @@
 const Meta = () => {
   return (
-    <div className='bg-green-500 w-full h-28 rounded-xl flex flex-col justify-around'>
+    <div className='bg-gradient-to-r from-green-500 to-green-600 w-full h-28 rounded-xl flex flex-col justify-around'>
       <span className='text-green-50 font-medium text-lg pl-4 pt-2'>
         Gasto mensal
       </span>
