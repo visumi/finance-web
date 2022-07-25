@@ -38,17 +38,17 @@ const Login = () => {
             d='M0,96L34.3,106.7C68.6,117,137,139,206,170.7C274.3,203,343,245,411,234.7C480,224,549,160,617,149.3C685.7,139,754,181,823,213.3C891.4,245,960,267,1029,250.7C1097.1,235,1166,181,1234,160C1302.9,139,1371,149,1406,154.7L1440,160L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z'
           ></path>
         </svg>
-        <Coins className='mx-auto text-amber-400' size={64} weight='fill' />
-        <h1 className='mx-auto text-3xl font-bold text-purple-900'>finance.</h1>
+        <Coins className='mx-auto text-amber-400' size={72} weight='fill' />
+        <h1 className='mx-auto text-4xl font-bold text-purple-900'>finance.</h1>
         <div className='flex pt-16 mx-auto space-x-16'>
           <div className='flex w-56 h-56 p-4 bg-white rounded-lg shadow-[0px_0px_14px_0px_rgba(168,85,247,0.61)]'>
             <div className='my-auto space-y-4 text-center'>
               <Wallet
                 className='mx-auto text-purple-600'
-                size={32}
+                size={48}
                 weight='fill'
               />
-              <span className='font-medium text-purple-800'>
+              <span className='font-medium text-lg text-purple-800'>
                 Controle seus gastos diários.
               </span>
             </div>
@@ -57,10 +57,10 @@ const Login = () => {
             <div className='my-auto space-y-4 text-center'>
               <HandPalm
                 className='mx-auto text-purple-600'
-                size={32}
+                size={48}
                 weight='fill'
               />
-              <span className='font-medium text-purple-800'>
+              <span className='font-medium text-lg text-purple-800'>
                 Defina seu limite de gastos.
               </span>
             </div>
@@ -69,10 +69,10 @@ const Login = () => {
             <div className='my-auto space-y-4 text-center'>
               <Calendar
                 className='mx-auto text-purple-600'
-                size={32}
+                size={48}
                 weight='fill'
               />
-              <span className='font-medium text-purple-800'>
+              <span className='font-medium text-lg text-purple-800'>
                 Relatório de gastos mensais.
               </span>
             </div>
