@@ -21,7 +21,7 @@ const Dashboard = ({ user }: DashboardProps) => {
   return (
     <div className='flex h-screen bg-no-repeat bg-cover bg-waves'>
       <div className='flex flex-col justify-center w-full'>
-        <div className='flex w-2/5 mx-auto mt-8 mb-4 rounded-lg shadow-md h-28 bg-poly2'>
+        <div className='flex w-2/5 mx-auto mt-8 mb-4 rounded-lg shadow-md h-32 bg-poly2'>
           <img
             className='my-auto ml-4 border-2 border-purple-400 rounded-full h-14 w-14'
             src={user?.img || images.UserImg}
