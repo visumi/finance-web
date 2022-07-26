@@ -1,7 +1,7 @@
 import { Transition, Dialog } from '@headlessui/react';
 import { Fragment } from 'react';
 import toast from 'react-hot-toast';
-import NewExpense from './newExpense';
+import NewExpense from './new-expense';
 
 interface newModalProps {
   isOpen: boolean;
@@ -36,7 +36,7 @@ const NewModal = ({ isOpen, closeModal }: newModalProps) => {
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-95'
               >
-                <Dialog.Panel className='w-full max-w-2xl p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl'>
+                <Dialog.Panel className='w-full max-w-2xl px-6 pt-6 pb-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl'>
                   <Dialog.Title
                     as='h3'
                     className='text-2xl font-bold text-purple-900'

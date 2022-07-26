@@ -1,28 +1,38 @@
-import { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import useSWR from 'swr';
 import Dashboard from './pages/dashboard';
 import Login from './pages/login';
+
+const fetcher = (url: string, credentials: {}) =>
+  fetch(url, credentials).then((r) => r.json());
 
 const App = () => {
   console.log('Desenvolvido por Vinícius Isumi - https://isumi.com.br');
 
-  const [user, setUser] = useState({ loggedIn: false });
+  const navigate = useNavigate();
+
+  const { data, error } = useSWR(
+    ['http://localhost:4000/account', { credentials: 'include' }],
+    fetcher
+  );
 
   useEffect(() => {
-    fetch('http://localhost:4000/account', { credentials: 'include' })
-      .then((r) => r.json())
-      .then((data) => {
-        setUser({ ...data });
-      });
-  }, []);
+    console.log(data);
+    if (!(!error && !data) && !data.loggedIn) {
+      navigate('/', { replace: true });
+    }
+  }, [data]);
+
+  if (!data && !error) {
+    return <></>;
+  }
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path='/dashboard' element={<Dashboard user={user} />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path='/' element={<Login />} />
+      <Route path='/dashboard' element={<Dashboard user={data} />} />
+    </Routes>
   );
 };
 

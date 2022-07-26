@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import History from '../components/history';
 import Meta from '../components/meta';
-import NewModal from '../components/newModal';
+import NewModal from '../components/new-modal';
 import { User } from '../models/user';
 import images from '../utils/images';
 
@@ -27,7 +27,7 @@ const Dashboard = ({ user }: DashboardProps) => {
     <div className='flex h-screen bg-no-repeat bg-cover bg-waves'>
       <NewModal isOpen={isOpen} closeModal={() => setIsOpen(false)}></NewModal>
       <div className='flex flex-col justify-center w-full'>
-        <div className='flex w-2/5 mx-auto mt-8 mb-4 rounded-lg shadow-md h-32 bg-poly2'>
+        <div className='flex w-2/5 mx-auto mt-8 mb-4 rounded-lg shadow-lg h-32 bg-poly2'>
           <img
             className='my-auto ml-4 border-2 border-purple-400 rounded-full h-14 w-14'
             src={user?.img || images.UserImg}
@@ -48,7 +48,7 @@ const Dashboard = ({ user }: DashboardProps) => {
             weight='fill'
           />
         </div>
-        <div className='w-2/5 p-4 mx-auto mb-4 bg-white rounded-lg shadow-md'>
+        <div className='w-2/5 p-4 mx-auto mb-4 bg-white rounded-lg shadow-lg'>
           <Meta />
           <button
             onClick={() => setIsOpen(true)}
@@ -67,6 +67,6 @@ const Dashboard = ({ user }: DashboardProps) => {
   );
 };
 
-Dashboard.defaultProps = { user: { loggedIn: false } };
+Dashboard.defaultProps = {};
 
 export default Dashboard;
