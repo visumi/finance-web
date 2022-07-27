@@ -1,13 +1,15 @@
 import { RadioGroup } from '@headlessui/react';
 import { CreditCard, CurrencyCircleDollar } from 'phosphor-react';
 import { useEffect, useState } from 'react';
+import { Category } from '../models/category';
 import { Tooltip } from './tooltip';
 
 interface paymentMethodProps {
   changeMethod(method: string): void;
+  category: Category;
 }
 
-const PaymentMethod = ({ changeMethod }: paymentMethodProps) => {
+const PaymentMethod = ({ changeMethod, category }: paymentMethodProps) => {
   let [method, setMethod] = useState('card');
 
   useEffect(() => {
@@ -23,8 +25,8 @@ const PaymentMethod = ({ changeMethod }: paymentMethodProps) => {
               <CreditCard
                 className={
                   checked
-                    ? 'text-slate-50 hover:cursor-pointer'
-                    : 'text-slate-300 hover:cursor-pointer'
+                    ? `${category?.style?.textLight} hover:cursor-pointer`
+                    : `${category?.style?.textDark} hover:cursor-pointer`
                 }
                 size={24}
                 weight='fill'
@@ -39,8 +41,8 @@ const PaymentMethod = ({ changeMethod }: paymentMethodProps) => {
               <CurrencyCircleDollar
                 className={
                   checked
-                    ? 'text-slate-50 hover:cursor-pointer'
-                    : 'text-slate-300 hover:cursor-pointer'
+                    ? `${category?.style?.textLight} hover:cursor-pointer`
+                    : `${category?.style?.textDark} hover:cursor-pointer`
                 }
                 size={24}
                 weight='fill'

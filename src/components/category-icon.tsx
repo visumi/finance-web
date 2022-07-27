@@ -1,28 +1,30 @@
 import { Asterisk, IconProps } from 'phosphor-react';
 
 interface categoryIconProps {
-  text: string;
+  iconColor: string;
   bg: string;
+  shadow: string;
   icon: React.ForwardRefExoticComponent<
     IconProps & React.RefAttributes<SVGSVGElement>
   >;
 }
 
-const CategoryIcon = ({ text, bg, icon }: categoryIconProps) => {
+const CategoryIcon = ({ iconColor, bg, shadow, icon }: categoryIconProps) => {
   const Icon = icon;
 
   return (
     <div
-      className={`flex w-12 h-12 mt-1 rounded-full shadow-lg hover:cursor-pointer ${bg}`}
+      className={`flex w-12 h-12 ${shadow} rounded-full hover:cursor-pointer ${bg}`}
     >
-      <Icon className={`mx-auto my-auto ${text}`} size={24} weight='fill' />
+      <Icon className={`mx-auto my-auto ${iconColor}`} size={24} weight='fill' />
     </div>
   );
 };
 
 CategoryIcon.defaultProps = {
-  text: 'slate',
-  bg: '',
+  iconColor: 'text-slate-700',
+  bg: 'bg-slate-100 hover:bg-slate-200',
+  shadow: 'shadow-none',
   icon: Asterisk,
 };
 
