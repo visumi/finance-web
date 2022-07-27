@@ -2,7 +2,7 @@ import { CreditCard, ForkKnife } from 'phosphor-react';
 
 const Expense = () => {
   return (
-    <div className='flex w-full h-20 p-4 rounded-lg bg-gradient-to-r from-sky-500 to-sky-600 shadow-sm'>
+    <div className='flex w-full h-20 p-4 rounded-lg bg-gradient-to-r from-sky-500 to-sky-800 shadow-sm'>
       <div className='flex w-12 h-12 rounded-full bg-sky-100'>
         <ForkKnife
           className='mx-auto my-auto text-sky-700'
@@ -26,7 +26,7 @@ const Expense = () => {
         </div>
       </div>
       <span className='ml-auto my-auto text-xl font-medium text-sky-50'>R$ 20.000,00</span>
-      <div className='ml-auto flex flex-col text-sky-200'>
+      <div className='ml-auto flex flex-col text-sky-50'>
         <span className='mx-auto'>20</span>
         <span>MAI</span>
       </div>

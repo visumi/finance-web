@@ -11,11 +11,13 @@ const NewExpense = () => {
     name: 'Geral',
     style: {
       iconColor: 'text-slate-700',
+      iconColorDark: 'text-slate-700',
       textLight: 'text-slate-50',
       textDark: 'text-slate-300',
       placeholder: 'placeholder-slate-300',
       bg: 'bg-slate-100 hover:bg-slate-200',
-      card: 'bg-gradient-to-r from-slate-400 via-slate-500 to-slate-700',
+      bgDark: 'bg-slate-100 hover:bg-slate-200',
+      card: 'bg-gradient-to-r from-slate-500 to-slate-800',
       icon: Asterisk,
     },
   });
