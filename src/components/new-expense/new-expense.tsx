@@ -1,9 +1,9 @@
 import { Asterisk } from 'phosphor-react';
 import { useState } from 'react';
-import { Category } from '../models/category';
-import CategorySelector from './category-selector';
+import { Category } from '../../models/category';
+import CategorySelector from '../category-picker/category-selector';
 import NewExpenseLayout from './new-expense-layout';
-import PaymentMethod from './payment-method';
+import PaymentMethod from '../payment-method';
 
 const NewExpense = () => {
   const [category, setCategory] = useState({

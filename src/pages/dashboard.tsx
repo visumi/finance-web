@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import History from '../components/history';
 import Meta from '../components/meta';
-import NewModal from '../components/new-modal';
+import NewModal from '../components/new-expense/new-modal';
 import { User } from '../models/user';
 import images from '../utils/images';
 

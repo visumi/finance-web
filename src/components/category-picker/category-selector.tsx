@@ -1,8 +1,8 @@
 import { Transition } from '@headlessui/react';
 import { Plus } from 'phosphor-react';
 import { useEffect, useState } from 'react';
-import { Category } from '../models/category';
-import categories from '../utils/categories';
+import { Category } from '../../models/category';
+import categories from '../../utils/categories';
 import CategoryIcon from './category-icon';
 
 interface CategorySelectorProps {
