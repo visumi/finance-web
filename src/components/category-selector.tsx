@@ -16,10 +16,12 @@ const CategorySelector = ({ changeCategory }: CategorySelectorProps) => {
     name: 'Nenhum',
     style: {
       iconColor: 'text-slate-700',
+      iconColorDark: 'text-slate-700',
       textLight: 'text-slate-50',
       textDark: 'text-slate-300',
       placeholder: 'placeholder-slate-300',
       bg: 'bg-slate-100 hover:bg-slate-200',
+      bgDark: 'bg-slate-100 hover:bg-slate-200',
       card: 'bg-gradient-to-r from-slate-400 via-slate-500 to-slate-700',
       icon: Plus,
     },
@@ -54,10 +56,10 @@ const CategorySelector = ({ changeCategory }: CategorySelectorProps) => {
               {categories.slice(0, 5).map((cat) => (
                 <button key={cat?.id} onClick={() => setCategory(cat)}>
                   <CategoryIcon
-                    bg={cat?.style.bg}
+                    bg={cat?.style?.bgDark}
                     shadow={'shadow-lg'}
-                    iconColor={cat?.style.iconColor}
-                    icon={cat?.style.icon}
+                    iconColor={cat?.style?.iconColorDark}
+                    icon={cat?.style?.icon}
                   />
                 </button>
               ))}
@@ -66,10 +68,10 @@ const CategorySelector = ({ changeCategory }: CategorySelectorProps) => {
               {categories.slice(5, 10).map((cat) => (
                 <button key={cat?.id} onClick={() => setCategory(cat)}>
                   <CategoryIcon
-                    bg={cat?.style.bg}
+                    bg={cat?.style?.bgDark}
                     shadow={'shadow-lg'}
-                    iconColor={cat?.style.iconColor}
-                    icon={cat?.style.icon}
+                    iconColor={cat?.style?.iconColorDark}
+                    icon={cat?.style?.icon}
                   />
                 </button>
               ))}

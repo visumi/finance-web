@@ -14,9 +14,9 @@ const CategoryIcon = ({ iconColor, bg, shadow, icon }: categoryIconProps) => {
 
   return (
     <div
-      className={`flex w-12 h-12 ${shadow} rounded-full hover:cursor-pointer ${bg}`}
+      className={`flex w-12 h-12 ${shadow} rounded-full hover:cursor-pointer ${iconColor} ${bg}`}
     >
-      <Icon className={`mx-auto my-auto ${iconColor}`} size={24} weight='fill' />
+      <Icon className='mx-auto my-auto' size={24} weight='fill' />
     </div>
   );
 };

@@ -8,10 +8,12 @@ export interface Category {
 
 interface Style {
   iconColor: string;
+  iconColorDark: string;
   textLight: string;
   textDark: string;
   placeholder: string;
   bg: string;
+  bgDark: string;
   card: string;
   icon: React.ForwardRefExoticComponent<IconProps & React.RefAttributes<SVGSVGElement>>;
 }
