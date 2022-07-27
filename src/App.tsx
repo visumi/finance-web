@@ -18,7 +18,6 @@ const App = () => {
   );
 
   useEffect(() => {
-    console.log(data);
     if (!(!error && !data) && !data.loggedIn) {
       navigate('/', { replace: true });
     }

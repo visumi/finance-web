@@ -1,10 +1,16 @@
+import { Category } from '../models/category';
 import CategorySelector from './category-selector';
 import PaymentMethod from './payment-method';
 
 const NewExpense = () => {
+
+  
+
   return (
     <div className='flex w-full h-20 p-4 rounded-lg bg-gradient-to-r from-slate-400 via-slate-500 to-slate-700'>
-      <CategorySelector changeCategory={(category: string) => console.log(category)} />
+      <CategorySelector
+        changeCategory={(category: Category) => console.log(category)}
+      />
       <div className='flex flex-col pl-4'>
         <input
           maxLength={20}
@@ -18,7 +24,7 @@ const NewExpense = () => {
           />
         </div>
       </div>
-      <span className='my-auto text-xl font-medium text-slate-50 pr-1'>R$</span>
+      <span className='pr-1 my-auto text-xl font-medium text-slate-50'>R$</span>
       <input
         min='1'
         max='999999999'

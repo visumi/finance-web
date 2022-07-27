@@ -12,8 +12,6 @@ interface DashboardProps {
 }
 
 const Dashboard = ({ user }: DashboardProps) => {
-  console.log(user);
-
   const [isOpen, setIsOpen] = useState(false);
 
   const logout = () => {
@@ -27,7 +25,7 @@ const Dashboard = ({ user }: DashboardProps) => {
     <div className='flex h-screen bg-no-repeat bg-cover bg-waves'>
       <NewModal isOpen={isOpen} closeModal={() => setIsOpen(false)}></NewModal>
       <div className='flex flex-col justify-center w-full'>
-        <div className='flex w-2/5 mx-auto mt-8 mb-4 rounded-lg shadow-lg h-32 bg-poly2'>
+        <div className='flex w-2/5 h-32 mx-auto mt-8 mb-4 rounded-lg shadow-lg bg-poly2'>
           <img
             className='my-auto ml-4 border-2 border-purple-400 rounded-full h-14 w-14'
             src={user?.img || images.UserImg}
@@ -52,7 +50,7 @@ const Dashboard = ({ user }: DashboardProps) => {
           <Meta />
           <button
             onClick={() => setIsOpen(true)}
-            className='flex w-full py-2 mt-4 bg-gradient-to-r from-purple-600 to-purple-800 rounded-full hover:bg-gradient-to-r hover:from-purple-600 hover:to-purple-500 text-purple-50'
+            className='flex w-full py-2 mt-4 rounded-full bg-gradient-to-r from-purple-600 to-purple-800 hover:bg-gradient-to-r hover:from-purple-600 hover:to-purple-500 text-purple-50'
           >
             <Plus className='my-auto ml-auto' size={24} weight='bold' />
             <span className='my-auto ml-2 mr-auto text-lg text-medium'>

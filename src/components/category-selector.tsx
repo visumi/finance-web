@@ -1,34 +1,30 @@
-import {
-  Asterisk,
-  Car,
-  FirstAid,
-  ForkKnife,
-  Gift,
-  House,
-  PawPrint,
-  Plus,
-  Popcorn,
-  ShoppingCart,
-  TShirt,
-} from 'phosphor-react';
+import { Transition } from '@headlessui/react';
+import { Asterisk, Plus } from 'phosphor-react';
 import { useEffect, useState } from 'react';
+import { Category } from '../models/category';
+import categories from '../utils/categories';
+import CategoryIcon from './category-icon';
 
 interface CategorySelectorProps {
-  changeCategory(category: string): void;
+  changeCategory(category: Category): void;
 }
 
 const CategorySelector = ({ changeCategory }: CategorySelectorProps) => {
   const [open, setOpen] = useState(false);
-  let [category, setCategory] = useState('any');
+  let [category, setCategory] = useState({
+    id: 0,
+    name: 'Geral',
+    text: 'text-slate-700',
+    bg: 'bg-slate-100 hover:bg-slate-200',
+    icon: Asterisk,
+  });
 
   useEffect(() => {
     changeCategory(category);
   }, [category]);
 
-  //Geral - Roupas - Restaurante - Transporte - Entretenimento - Moradia - Mercado - Saúde - Pet - Presentes
-
   return (
-    <div onClick={() => setOpen(!open)} className='relative'>
+    <div onClick={() => setOpen(!open)} className='relative z-20'>
       <div className='flex w-12 h-12 rounded-full bg-slate-100 hover:cursor-pointer hover:bg-slate-200'>
         <Plus
           className='mx-auto my-auto text-slate-700'
@@ -37,112 +33,41 @@ const CategorySelector = ({ changeCategory }: CategorySelectorProps) => {
         />
       </div>
       {open && (
-        <div className='absolute flex flex-col -bottom-13'>
-          <div className='flex space-x-1'>
-            <div
-              onClick={() => setCategory('1')}
-              className='flex w-12 h-12 mt-1 rounded-full shadow-lg bg-slate-100 hover:cursor-pointer hover:bg-slate-200'
-            >
-              <Asterisk
-                className='mx-auto my-auto text-slate-700'
-                size={24}
-                weight='bold'
-              />
+        <Transition
+          appear
+          show={open}
+          enter='transition ease-in-out duration-200 delay-100 transform'
+          enterFrom='opacity-0 scale-0'
+          enterTo='opacity-100 scale-100'
+          leave='transition ease-in-out duration-300 transform'
+          leaveFrom='opacity-100'
+          leaveTo='opacity-0'
+        >
+          <div className='absolute z-20 flex flex-col -bottom-13'>
+            <div className='flex space-x-1'>
+              {categories.slice(0, 5).map((cat) => (
+                <button key={cat?.id} onClick={() => setCategory(cat)}>
+                  <CategoryIcon
+                    bg={cat?.bg}
+                    text={cat?.text}
+                    icon={cat?.icon}
+                  />
+                </button>
+              ))}
             </div>
-            <div
-              onClick={() => setCategory('2')}
-              className='flex w-12 h-12 mt-1 rounded-full shadow-lg bg-slate-100 hover:cursor-pointer hover:bg-slate-200'
-            >
-              <TShirt
-                className='mx-auto my-auto text-slate-700'
-                size={24}
-                weight='fill'
-              />
-            </div>
-            <div
-              onClick={() => setCategory('3')}
-              className='flex w-12 h-12 mt-1 rounded-full shadow-lg bg-slate-100 hover:cursor-pointer hover:bg-slate-200'
-            >
-              <Car
-                className='mx-auto my-auto text-slate-700'
-                size={24}
-                weight='fill'
-              />
-            </div>
-            <div
-              onClick={() => setCategory('4')}
-              className='flex w-12 h-12 mt-1 rounded-full shadow-lg bg-slate-100 hover:cursor-pointer hover:bg-slate-200'
-            >
-              <Popcorn
-                className='mx-auto my-auto text-slate-700'
-                size={24}
-                weight='fill'
-              />
-            </div>
-            <div
-              onClick={() => setCategory('5')}
-              className='flex w-12 h-12 mt-1 rounded-full shadow-lg bg-slate-100 hover:cursor-pointer hover:bg-slate-200'
-            >
-              <House
-                className='mx-auto my-auto text-slate-700'
-                size={24}
-                weight='fill'
-              />
+            <div className='flex space-x-1'>
+              {categories.slice(5, 10).map((cat) => (
+                <button key={cat?.id} onClick={() => setCategory(cat)}>
+                  <CategoryIcon
+                    bg={cat?.bg}
+                    text={cat?.text}
+                    icon={cat?.icon}
+                  />
+                </button>
+              ))}
             </div>
           </div>
-          <div className='flex space-x-1'>
-            <div
-              onClick={() => setCategory('1')}
-              className='flex w-12 h-12 mt-1 rounded-full shadow-lg bg-slate-100 hover:cursor-pointer hover:bg-slate-200'
-            >
-              <ShoppingCart
-                className='mx-auto my-auto text-slate-700'
-                size={24}
-                weight='fill'
-              />
-            </div>
-            <div
-              onClick={() => setCategory('2')}
-              className='flex w-12 h-12 mt-1 rounded-full shadow-lg bg-slate-100 hover:cursor-pointer hover:bg-slate-200'
-            >
-              <FirstAid
-                className='mx-auto my-auto text-slate-700'
-                size={24}
-                weight='fill'
-              />
-            </div>
-            <div
-              onClick={() => setCategory('3')}
-              className='flex w-12 h-12 mt-1 rounded-full shadow-lg bg-slate-100 hover:cursor-pointer hover:bg-slate-200'
-            >
-              <ForkKnife
-                className='mx-auto my-auto text-slate-700'
-                size={24}
-                weight='fill'
-              />
-            </div>
-            <div
-              onClick={() => setCategory('4')}
-              className='flex w-12 h-12 mt-1 rounded-full shadow-lg bg-slate-100 hover:cursor-pointer hover:bg-slate-200'
-            >
-              <Gift
-                className='mx-auto my-auto text-slate-700'
-                size={24}
-                weight='fill'
-              />
-            </div>
-            <div
-              onClick={() => setCategory('5')}
-              className='flex w-12 h-12 mt-1 rounded-full shadow-lg bg-slate-100 hover:cursor-pointer hover:bg-slate-200'
-            >
-              <PawPrint
-                className='mx-auto my-auto text-slate-700'
-                size={24}
-                weight='fill'
-              />
-            </div>
-          </div>
-        </div>
+        </Transition>
       )}
     </div>
   );
