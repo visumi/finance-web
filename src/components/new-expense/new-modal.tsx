@@ -1,5 +1,5 @@
-import { Transition, Dialog } from '@headlessui/react';
-import { Fragment } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { FC, Fragment } from 'react';
 import toast from 'react-hot-toast';
 import NewExpense from './new-expense';
 
@@ -8,7 +8,10 @@ interface newModalProps {
   closeModal(): void;
 }
 
-const NewModal = ({ isOpen, closeModal }: newModalProps) => {
+const NewModal: FC<newModalProps> = ({
+  isOpen = false,
+  closeModal,
+}: newModalProps) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -36,27 +39,27 @@ const NewModal = ({ isOpen, closeModal }: newModalProps) => {
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-95'
               >
-                <Dialog.Panel className='w-full max-w-2xl px-6 pb-10 pt-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl'>
+                <Dialog.Panel className='w-full max-w-2xl px-6 pt-6 pb-10 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl'>
                   <Dialog.Title
                     as='h3'
-                    className='text-2xl font-bold text-purple-900 pb-2'
+                    className='pb-2 text-2xl font-bold text-purple-900'
                   >
                     NOVO GASTO
                   </Dialog.Title>
                   <div className='py-2'>
                     <NewExpense />
                   </div>
-                  <div className='mt-4 flex'>
+                  <div className='flex mt-4'>
                     <button
                       type='button'
-                      className='ml-auto justify-center px-4 py-2 text-sm font-medium text-purple-900 bg-purple-100 border border-transparent rounded-md hover:bg-purple-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2'
+                      className='justify-center px-4 py-2 ml-auto text-sm font-medium text-purple-900 bg-purple-100 border border-transparent rounded-md hover:bg-purple-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2'
                       onClick={closeModal}
                     >
                       Cancelar
                     </button>
                     <button
                       type='button'
-                      className='ml-2 justify-center px-4 py-2 text-sm font-medium text-purple-50 bg-purple-900 border border-transparent rounded-md hover:bg-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2'
+                      className='justify-center px-4 py-2 ml-2 text-sm font-medium bg-purple-900 border border-transparent rounded-md text-purple-50 hover:bg-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2'
                       onClick={() => {
                         closeModal();
                         toast.success('Gasto adicionado');
@@ -74,7 +77,5 @@ const NewModal = ({ isOpen, closeModal }: newModalProps) => {
     </>
   );
 };
-
-NewModal.defaultProps = { isOpen: false };
 
 export default NewModal;

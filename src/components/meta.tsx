@@ -1,4 +1,6 @@
-const Meta = () => {
+import { FC } from "react";
+
+const Meta: FC = () => {
   return (
     <div className='bg-gradient-to-r from-green-500 to-green-600 w-full h-28 rounded-xl flex flex-col justify-around'>
       <span className='text-green-50 font-medium text-lg pl-4 pt-2'>

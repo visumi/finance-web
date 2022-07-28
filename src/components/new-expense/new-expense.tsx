@@ -1,11 +1,11 @@
 import { Asterisk } from 'phosphor-react';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { Category } from '../../models/category';
 import CategorySelector from '../category-picker/category-selector';
-import NewExpenseLayout from './new-expense-layout';
 import PaymentMethod from '../payment-method';
+import NewExpenseLayout from './new-expense-layout';
 
-const NewExpense = () => {
+const NewExpense: FC = () => {
   const [category, setCategory] = useState({
     id: 0,
     name: 'Geral',

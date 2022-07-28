@@ -1,6 +1,6 @@
 import { RadioGroup } from '@headlessui/react';
-import { CreditCard, CurrencyCircleDollar } from 'phosphor-react';
-import { useEffect, useState } from 'react';
+import { Asterisk, CreditCard, CurrencyCircleDollar } from 'phosphor-react';
+import { FC, useEffect, useState } from 'react';
 import { Category } from '../models/category';
 import { Tooltip } from './tooltip';
 
@@ -9,7 +9,24 @@ interface paymentMethodProps {
   category: Category;
 }
 
-const PaymentMethod = ({ changeMethod, category }: paymentMethodProps) => {
+const PaymentMethod: FC<paymentMethodProps> = ({
+  changeMethod,
+  category = {
+    id: 0,
+    name: 'Geral',
+    style: {
+      iconColor: 'text-slate-700',
+      iconColorDark: 'text-slate-700',
+      textLight: 'text-slate-50',
+      textDark: 'text-slate-300',
+      placeholder: 'placeholder-slate-300',
+      bg: 'bg-slate-100 hover:bg-slate-200',
+      bgDark: 'bg-slate-100 hover:bg-slate-200',
+      card: 'bg-gradient-to-r from-slate-500 to-slate-800',
+      icon: Asterisk,
+    },
+  },
+}) => {
   let [method, setMethod] = useState('card');
 
   useEffect(() => {
@@ -54,7 +71,5 @@ const PaymentMethod = ({ changeMethod, category }: paymentMethodProps) => {
     </RadioGroup>
   );
 };
-
-PaymentMethod.defaultProps = {};
 
 export default PaymentMethod;

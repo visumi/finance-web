@@ -1,15 +1,15 @@
 import { Transition } from '@headlessui/react';
 import { Plus } from 'phosphor-react';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Category } from '../../models/category';
 import categories from '../../utils/categories';
 import CategoryIcon from './category-icon';
 
-interface CategorySelectorProps {
+interface categorySelectorProps {
   changeCategory(category: Category): void;
 }
 
-const CategorySelector = ({ changeCategory }: CategorySelectorProps) => {
+const CategorySelector: FC<categorySelectorProps> = ({ changeCategory }) => {
   const [open, setOpen] = useState(false);
   let [category, setCategory] = useState({
     id: -1,

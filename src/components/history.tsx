@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import Expense from './expense';
 
-const History = () => {
+const History: FC = () => {
   return (
     <div className='w-2/5 h-screen p-4 mx-auto mb-8 bg-white shadow-lg rounded-lg'>
       <h1 className='text-2xl font-bold text-purple-900'>

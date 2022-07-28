@@ -1,6 +1,12 @@
-import { ReactNode } from 'react';
-export const Tooltip = ({
-  message,
+import { FC, ReactNode } from 'react';
+
+interface tooltipProps {
+  message: string;
+  children: ReactNode;
+}
+
+export const Tooltip: FC<tooltipProps> = ({
+  message = '',
   children,
 }: {
   message: string;
