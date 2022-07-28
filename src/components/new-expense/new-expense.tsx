@@ -1,11 +1,13 @@
 import { Asterisk } from 'phosphor-react';
 import { FC, useState } from 'react';
 import { Category } from '../../models/category';
+import { currencyMask } from '../../utils/currencyMask';
 import CategorySelector from '../category-picker/category-selector';
 import PaymentMethod from '../payment-method';
 import NewExpenseLayout from './new-expense-layout';
 
 const NewExpense: FC = () => {
+  const [value, setValue] = useState('');
   const [category, setCategory] = useState({
     id: 0,
     name: 'Geral',
@@ -47,10 +49,9 @@ const NewExpense: FC = () => {
         R$
       </span>
       <input
-        min='1'
-        max='999999999'
-        type='number'
         placeholder='0'
+        value={value}
+        onChange={(e) => setValue(currencyMask(e).target.value)}
         className={`w-32 my-auto text-xl font-medium bg-transparent outline-none ${category?.style?.textLight} border-1 ${category?.style?.placeholder}`}
       />
       <div className={`flex flex-col ml-auto ${category?.style?.textLight}`}>
