@@ -1,6 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { FC, Fragment } from 'react';
+import { FC, Fragment, useState } from 'react';
 import toast from 'react-hot-toast';
+import { Expense } from '../../models/expense';
 import NewExpense from './new-expense';
 
 interface newModalProps {
@@ -12,6 +13,9 @@ const NewModal: FC<newModalProps> = ({
   isOpen = false,
   closeModal,
 }: newModalProps) => {
+
+  const [data, setData] = useState({});
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -47,7 +51,7 @@ const NewModal: FC<newModalProps> = ({
                     NOVO GASTO
                   </Dialog.Title>
                   <div className='py-2'>
-                    <NewExpense />
+                    <NewExpense updateInfo={(data: Expense) => setData(data)} />
                   </div>
                   <div className='flex mt-4'>
                     <button
@@ -61,7 +65,8 @@ const NewModal: FC<newModalProps> = ({
                       type='button'
                       className='justify-center px-4 py-2 ml-2 text-sm font-medium bg-purple-900 border border-transparent rounded-md text-purple-50 hover:bg-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2'
                       onClick={() => {
-                        closeModal();
+                        console.log(data);
+                        // closeModal();
                         toast.success('Gasto adicionado');
                       }}
                     >

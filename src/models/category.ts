@@ -1,6 +1,6 @@
 import { IconProps } from "phosphor-react";
 
-export interface Category {
+export default interface Category {
   id: number;
   name: string;
   style: Style;
