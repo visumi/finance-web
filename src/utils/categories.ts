@@ -10,7 +10,7 @@ import {
   ShoppingCart,
   TShirt,
 } from 'phosphor-react';
-import { Category } from '../models/category';
+import Category from '../models/category';
 
 //Geral - Roupas - Restaurante - Transporte - Entretenimento - Moradia - Mercado - Saúde - Pet - Presentes
 

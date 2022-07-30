@@ -1,6 +1,6 @@
 import { Asterisk } from 'phosphor-react';
 import { FC, ReactNode } from 'react';
-import { Category } from '../../models/category';
+import Category from '../../models/category';
 
 interface newExpenseLayoutProps {
   category?: Category;

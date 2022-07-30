@@ -20,6 +20,7 @@ const NewExpense: FC<newExpenseProps> = ({ updateInfo }) => {
   const [month, setMonth] = useState('');
   const [date, setDate] = useState('');
 
+  const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [method, setMethod] = useState('card');
 
@@ -40,8 +41,8 @@ const NewExpense: FC<newExpenseProps> = ({ updateInfo }) => {
   });
 
   useEffect(() => {
-    updateInfo({ price, category, method, date });
-  }, [price, category, method, date]);
+    updateInfo({ price, category, method, date, name });
+  }, [price, category, method, date, name]);
 
   useMemo(() => {
     const now = new Date();
@@ -65,6 +66,7 @@ const NewExpense: FC<newExpenseProps> = ({ updateInfo }) => {
           maxLength={18}
           type='text'
           placeholder='NOME'
+          onChange={(e) => setName(e.target.value)}
           className={`my-auto text-lg font-medium bg-transparent outline-none ${category?.style?.textLight} border-1 ${category?.style?.placeholder}`}
         />
         <div className='flex space-x-2'>

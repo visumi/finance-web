@@ -1,7 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import { FC, Fragment, useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
 import { Expense } from '../../models/expense';
 import NewExpense from './new-expense';
 
@@ -10,10 +9,7 @@ interface newModalProps {
   closeModal(): void;
 }
 
-const NewModal: FC<newModalProps> = ({
-  isOpen = false,
-  closeModal,
-}: newModalProps) => {
+const NewModal: FC<newModalProps> = ({ isOpen = false, closeModal }) => {
   const [expense, setExpense] = useState({
     category: { id: -1 },
     date: '',
