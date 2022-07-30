@@ -3,9 +3,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import useSWR from 'swr';
 import Dashboard from './pages/dashboard';
 import Login from './pages/login';
-
-const fetcher = (url: string, credentials: {}) =>
-  fetch(url, credentials).then((r) => r.json());
+import fetcher from './utils/fetcher';
 
 const App = () => {
   console.log('Desenvolvido por Vinícius Isumi - https://isumi.com.br');

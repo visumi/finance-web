@@ -53,9 +53,9 @@ const Dashboard = ({ user }: DashboardProps) => {
             className='flex w-full py-2 mt-4 rounded-full bg-gradient-to-r from-purple-600 to-purple-800 hover:bg-gradient-to-r hover:from-purple-600 hover:to-purple-500 text-purple-50'
           >
             <Plus className='my-auto ml-auto' size={24} weight='bold' />
-            <button className='my-auto ml-2 mr-auto text-lg text-medium'>
+            <span className='my-auto ml-2 mr-auto text-lg text-medium'>
               Novo gasto
-            </button>
+            </span>
           </button>
         </div>
         <History />

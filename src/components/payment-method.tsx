@@ -1,7 +1,7 @@
 import { RadioGroup } from '@headlessui/react';
 import { Asterisk, CreditCard, CurrencyCircleDollar } from 'phosphor-react';
 import { FC, useEffect, useState } from 'react';
-import { Category } from '../models/category';
+import Category from '../models/category';
 import { Tooltip } from './tooltip';
 
 interface paymentMethodProps {

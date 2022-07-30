@@ -1,4 +1,4 @@
-import { Asterisk } from 'phosphor-react';
+import { Plus } from 'phosphor-react';
 import { FC, useEffect, useMemo, useState } from 'react';
 import Category from '../../models/category';
 import { Expense } from '../../models/expense';
@@ -20,12 +20,12 @@ const NewExpense: FC<newExpenseProps> = ({ updateInfo }) => {
   const [month, setMonth] = useState('');
   const [date, setDate] = useState('');
 
-  const [value, setValue] = useState('');
+  const [price, setPrice] = useState('');
   const [method, setMethod] = useState('card');
 
   const [category, setCategory] = useState({
-    id: 0,
-    name: 'Geral',
+    id: -1,
+    name: 'None',
     style: {
       iconColor: 'text-slate-700',
       iconColorDark: 'text-slate-700',
@@ -35,13 +35,13 @@ const NewExpense: FC<newExpenseProps> = ({ updateInfo }) => {
       bg: 'bg-slate-100 hover:bg-slate-200',
       bgDark: 'bg-slate-100 hover:bg-slate-200',
       card: 'bg-gradient-to-r from-slate-500 to-slate-800',
-      icon: Asterisk,
+      icon: Plus,
     },
   });
 
   useEffect(() => {
-    updateInfo({ value, category, method, date });
-  }, [value, category, method, date]);
+    updateInfo({ price, category, method, date });
+  }, [price, category, method, date]);
 
   useMemo(() => {
     const now = new Date();
@@ -83,8 +83,8 @@ const NewExpense: FC<newExpenseProps> = ({ updateInfo }) => {
         <input
           placeholder='0'
           maxLength={15}
-          value={value}
-          onChange={(e) => setValue(currencyMask(e).target.value)}
+          value={price}
+          onChange={(e) => setPrice(currencyMask(e).target.value)}
           className={`w-32 my-auto text-xl font-medium bg-transparent outline-none ${category?.style?.textLight} border-1 ${category?.style?.placeholder}`}
         />
       </div>

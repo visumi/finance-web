@@ -1,5 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { FC, Fragment, useState } from 'react';
+import clsx from 'clsx';
+import { FC, Fragment, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Expense } from '../../models/expense';
 import NewExpense from './new-expense';
@@ -13,8 +14,40 @@ const NewModal: FC<newModalProps> = ({
   isOpen = false,
   closeModal,
 }: newModalProps) => {
+  const [expense, setExpense] = useState({
+    category: { id: -1 },
+    date: '',
+    method: '',
+    price: '',
+  });
+  const [allowSubmit, setAllowSubmit] = useState(false);
 
-  const [data, setData] = useState({});
+  useEffect(() => {
+    if (
+      expense.category.id >= 0 &&
+      expense.date &&
+      expense.method &&
+      expense.price
+    ) {
+      setAllowSubmit(true);
+    } else {
+      setAllowSubmit(false);
+    }
+  }, [expense]);
+
+  const postExpense = () => {
+    fetch('http://localhost:4000/expenses', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify(expense),
+    }).then((res) => {
+      console.log(res);
+    });
+  };
 
   return (
     <>
@@ -51,7 +84,9 @@ const NewModal: FC<newModalProps> = ({
                     NOVO GASTO
                   </Dialog.Title>
                   <div className='py-2'>
-                    <NewExpense updateInfo={(data: Expense) => setData(data)} />
+                    <NewExpense
+                      updateInfo={(data: Expense) => setExpense(data)}
+                    />
                   </div>
                   <div className='flex mt-4'>
                     <button
@@ -63,11 +98,21 @@ const NewModal: FC<newModalProps> = ({
                     </button>
                     <button
                       type='button'
-                      className='justify-center px-4 py-2 ml-2 text-sm font-medium bg-purple-900 border border-transparent rounded-md text-purple-50 hover:bg-purple-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2'
+                      disabled={!allowSubmit}
+                      className={clsx(
+                        {
+                          'justify-center px-4 py-2 ml-2 text-sm font-medium bg-purple-900 border hover:cursor-pointer border-transparent rounded-md text-purple-50 hover:bg-purple-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2':
+                            allowSubmit,
+                        },
+                        {
+                          'justify-center px-4 py-2 ml-2 text-sm font-medium bg-purple-900 opacity-30 border border-transparent rounded-md text-purple-50 hover:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2':
+                            !allowSubmit,
+                        }
+                      )}
                       onClick={() => {
-                        console.log(data);
-                        // closeModal();
-                        toast.success('Gasto adicionado');
+                        if (allowSubmit) {
+                          postExpense();
+                        }
                       }}
                     >
                       Salvar
