@@ -32,6 +32,8 @@ const NewModal: FC<newModalProps> = ({ isOpen = false, closeModal }) => {
   }, [expense]);
 
   const postExpense = () => {
+    const formattedExpense: any = Object.assign({}, expense);
+    formattedExpense.category = expense.category.id;
     fetch('http://localhost:4000/expenses', {
       method: 'POST',
       headers: {
@@ -39,7 +41,7 @@ const NewModal: FC<newModalProps> = ({ isOpen = false, closeModal }) => {
         'Content-Type': 'application/json',
       },
       credentials: 'include',
-      body: JSON.stringify(expense),
+      body: JSON.stringify(formattedExpense),
     }).then((res) => {
       console.log(res);
     });
