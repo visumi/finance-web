@@ -1,6 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import { FC, Fragment, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Expense } from '../../models/expense';
 import NewExpense from './new-expense';
 
@@ -11,19 +12,21 @@ interface newModalProps {
 
 const NewModal: FC<newModalProps> = ({ isOpen = false, closeModal }) => {
   const [expense, setExpense] = useState({
-    category: { id: -1 },
-    date: '',
-    method: '',
+    category: -1,
+    created_at: '',
+    payment_method: '',
     price: '',
+    name: '',
   });
   const [allowSubmit, setAllowSubmit] = useState(false);
 
   useEffect(() => {
     if (
-      expense.category.id >= 0 &&
-      expense.date &&
-      expense.method &&
-      expense.price
+      expense.category >= 0 &&
+      expense.created_at &&
+      expense.payment_method &&
+      expense.price &&
+      expense.name
     ) {
       setAllowSubmit(true);
     } else {
@@ -33,8 +36,8 @@ const NewModal: FC<newModalProps> = ({ isOpen = false, closeModal }) => {
 
   const postExpense = () => {
     const formattedExpense: any = Object.assign({}, expense);
-    formattedExpense.category = expense.category.id;
-    fetch('http://localhost:4000/expenses', {
+    formattedExpense.category = expense.category;
+    fetch('http://localhost:4000/expense', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -43,7 +46,12 @@ const NewModal: FC<newModalProps> = ({ isOpen = false, closeModal }) => {
       credentials: 'include',
       body: JSON.stringify(formattedExpense),
     }).then((res) => {
-      console.log(res);
+      if (res?.status === 200) {
+        toast.success('Despesa criada!');
+        closeModal();
+      } else {
+        toast.error('Erro ao criar despesa.');
+      }
     });
   };
 

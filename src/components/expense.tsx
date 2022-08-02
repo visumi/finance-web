@@ -1,15 +1,11 @@
-import { CreditCard, CurrencyCircleDollar } from 'phosphor-react';
+import { CreditCard, CurrencyCircleDollar, X } from 'phosphor-react';
 import { FC, useEffect, useState } from 'react';
-import Category from '../models/category';
 import { Expense as ExpenseModel } from '../models/expense';
-import { currencyMask } from '../utils/currencyMask';
+import categories from '../utils/categories';
 import { getMonth } from '../utils/getMonth';
 import { getToday } from '../utils/getToday';
 import CategoryIcon from './category-picker/category-icon';
-import CategorySelector from './category-picker/category-selector';
-import NewExpenseLayout from './new-expense/new-expense-layout';
-import PaymentMethod from './payment-method';
-import { Tooltip } from './tooltip';
+import ExpenseLayout from './new-expense/expense-layout';
 
 interface expenseProps {
   data: ExpenseModel;
@@ -17,37 +13,40 @@ interface expenseProps {
 
 const Expense: FC<expenseProps> = ({ data }) => {
   const [expense, setExpense] = useState({
-    category: {
-      id: 0,
-      name: '',
-      style: {
-        iconColor: '',
-        iconColorDark: '',
-        textLight: '',
-        textDark: '',
-        placeholder: '',
-        bg: '',
-        bgDark: '',
-        card: '',
-        icon: {},
-      },
+    name: 'ERRO',
+    category: -1,
+    created_at: '',
+    payment_method: 'card',
+    price: '0',
+  });
+
+  const [category, setCategory] = useState({
+    id: -1,
+    name: 'Erro',
+    style: {
+      iconColor: 'text-slate-700',
+      iconColorDark: 'text-slate-700',
+      textLight: 'text-slate-50',
+      textDark: 'text-slate-300',
+      placeholder: 'placeholder-slate-300',
+      bg: 'bg-slate-100 hover:bg-slate-200',
+      bgDark: 'bg-slate-100 hover:bg-slate-200',
+      card: 'bg-gradient-to-r from-slate-500 to-slate-800',
+      icon: X,
     },
-    date: '',
-    method: '',
-    price: '',
-    name: '',
   });
 
   useEffect(() => {
     setExpense(data);
+    setCategory(categories.filter((c) => c.id === data.category)[0]);
   }, []);
 
   return (
-    <NewExpenseLayout category={data.category}>
+    <ExpenseLayout category={category}>
       <CategoryIcon
-        icon={data?.category?.style?.icon}
-        bg={data?.category?.style?.bg}
-        iconColor={data?.category?.style?.iconColor}
+        icon={category?.style?.icon}
+        bg={category?.style?.bg}
+        iconColor={category?.style?.iconColor}
       />
       <div className='flex flex-col pl-4'>
         <input
@@ -55,53 +54,49 @@ const Expense: FC<expenseProps> = ({ data }) => {
           type='text'
           disabled={true}
           value={data?.name?.toUpperCase()}
-          className={`my-auto text-lg font-medium bg-transparent outline-none ${data?.category?.style?.textLight} border-1 ${data?.category?.style?.placeholder}`}
+          className={`my-auto text-lg font-medium bg-transparent outline-none ${category?.style?.textLight} border-1 ${category?.style?.placeholder}`}
         />
         <div className='flex space-x-2'>
-          {data?.method === 'card' ? (
-            <Tooltip message='Cartão'>
-              <CreditCard
-                size={24}
-                weight='fill'
-                className={data?.category?.style?.textLight}
-              />
-            </Tooltip>
+          {data?.payment_method === 'card' ? (
+            <CreditCard
+              size={24}
+              weight='fill'
+              className={category?.style?.textLight}
+            />
           ) : (
-            <Tooltip message='Dinheiro'>
-              <CurrencyCircleDollar
-                size={24}
-                weight='fill'
-                className={data?.category?.style?.textLight}
-              />
-            </Tooltip>
+            <CurrencyCircleDollar
+              size={24}
+              weight='fill'
+              className={category?.style?.textLight}
+            />
           )}
         </div>
       </div>
       <div className='mx-auto my-auto'>
         <span
-          className={`pr-1 text-xl font-medium ${data?.category?.style?.textLight}`}
+          className={`pr-1 text-xl font-medium ${category?.style?.textLight}`}
         >
-          <span className={data?.category?.style?.textLight}>R$</span>
+          <span className={category?.style?.textLight}>R$</span>
         </span>
         <input
           placeholder='0'
           maxLength={15}
           disabled={true}
           value={data?.price}
-          className={`w-32 my-auto text-xl font-medium bg-transparent outline-none ${data?.category?.style?.textLight} border-1 ${data?.category?.style?.placeholder}`}
+          className={`w-32 my-auto text-xl font-medium bg-transparent outline-none ${category?.style?.textLight} border-1 ${category?.style?.placeholder}`}
         />
       </div>
       <div
-        className={`flex flex-col font-medium ml-auto ${data?.category?.style?.textLight}`}
+        className={`flex flex-col font-medium ml-auto ${category?.style?.textLight}`}
       >
-        <span className={`${data?.category?.style?.textLight} ml-auto`}>
-          {getToday(data?.date)}
+        <span className={`${category?.style?.textLight} ml-auto`}>
+          {getToday(data?.created_at)}
         </span>
-        <span className={`mt-auto ${data?.category?.style?.textLight}`}>
-          {getMonth(data?.date)}
+        <span className={`mt-auto ${category?.style?.textLight}`}>
+          {getMonth(data?.created_at)}
         </span>
       </div>
-    </NewExpenseLayout>
+    </ExpenseLayout>
   );
 };
 

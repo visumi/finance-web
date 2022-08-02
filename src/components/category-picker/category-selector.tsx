@@ -1,7 +1,7 @@
 import { Transition } from '@headlessui/react';
 import { Plus } from 'phosphor-react';
 import { FC, useEffect, useState } from 'react';
-import { Category } from '../../models/category';
+import Category from '../../models/category';
 import categories from '../../utils/categories';
 import CategoryIcon from './category-icon';
 
@@ -11,7 +11,7 @@ interface categorySelectorProps {
 
 const CategorySelector: FC<categorySelectorProps> = ({ changeCategory }) => {
   const [open, setOpen] = useState(false);
-  let [category, setCategory] = useState({
+  let [categoryData, setCategoryData] = useState({
     id: -1,
     name: 'Nenhum',
     style: {
@@ -28,16 +28,16 @@ const CategorySelector: FC<categorySelectorProps> = ({ changeCategory }) => {
   });
 
   useEffect(() => {
-    changeCategory(category);
-  }, [category]);
+    changeCategory(categoryData);
+  }, [categoryData]);
 
   return (
     <div onClick={() => setOpen(!open)} className='relative z-20'>
       <div className='mb-1'>
         <CategoryIcon
-          iconColor={category?.style.iconColor}
-          icon={category?.style.icon}
-          bg={category.style.bg}
+          iconColor={categoryData?.style.iconColor}
+          icon={categoryData?.style.icon}
+          bg={categoryData?.style.bg}
         />
       </div>
       {open && (
@@ -54,7 +54,7 @@ const CategorySelector: FC<categorySelectorProps> = ({ changeCategory }) => {
           <div className='absolute z-20 flex flex-col -bottom-13'>
             <div className='flex mb-1 space-x-1'>
               {categories.slice(0, 5).map((cat) => (
-                <button key={cat?.id} onClick={() => setCategory(cat)}>
+                <button key={cat?.id} onClick={() => setCategoryData(cat)}>
                   <CategoryIcon
                     bg={cat?.style?.bgDark}
                     shadow={'shadow-lg'}
@@ -66,7 +66,7 @@ const CategorySelector: FC<categorySelectorProps> = ({ changeCategory }) => {
             </div>
             <div className='flex space-x-1'>
               {categories.slice(5, 10).map((cat) => (
-                <button key={cat?.id} onClick={() => setCategory(cat)}>
+                <button key={cat?.id} onClick={() => setCategoryData(cat)}>
                   <CategoryIcon
                     bg={cat?.style?.bgDark}
                     shadow={'shadow-lg'}

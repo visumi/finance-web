@@ -2,8 +2,8 @@ import Category from "./category";
 
 export interface Expense {
   name: string;
-  category: Category;
-  date: string;
-  method: string;
+  category: number;
+  created_at: string;
+  payment_method: string;
   price: string;
 }

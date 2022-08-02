@@ -7,7 +7,7 @@ import { getMonth } from '../../utils/getMonth';
 import { getToday } from '../../utils/getToday';
 import CategorySelector from '../category-picker/category-selector';
 import PaymentMethod from '../payment-method';
-import NewExpenseLayout from './new-expense-layout';
+import ExpenseLayout from './expense-layout';
 
 interface newExpenseProps {
   updateInfo(data: Expense): void;
@@ -18,13 +18,13 @@ const NewExpense: FC<newExpenseProps> = ({ updateInfo }) => {
   const [lastDay, setLastDay] = useState('');
   const [day, setDay] = useState('');
   const [month, setMonth] = useState('');
-  const [date, setDate] = useState('');
+  const [created_at, setCreatedAt] = useState('');
 
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
-  const [method, setMethod] = useState('card');
+  const [payment_method, setPaymentMethod] = useState('card');
 
-  const [category, setCategory] = useState({
+  const [categoryData, setCategoryData] = useState({
     id: -1,
     name: 'None',
     style: {
@@ -41,13 +41,14 @@ const NewExpense: FC<newExpenseProps> = ({ updateInfo }) => {
   });
 
   useEffect(() => {
-    updateInfo({ price, category, method, date, name });
-  }, [price, category, method, date, name]);
+    let category = categoryData.id;
+    updateInfo({ price, category, payment_method, created_at, name });
+  }, [price, categoryData, payment_method, created_at, name]);
 
   useMemo(() => {
     const now = new Date();
 
-    setDate(now.toISOString().slice(0, 10));
+    setCreatedAt(now.toISOString().slice(0, 10));
     setDay(getToday(now.toISOString()));
     setMonth(getMonth(now.toISOString()));
     setFirstDay(
@@ -57,9 +58,11 @@ const NewExpense: FC<newExpenseProps> = ({ updateInfo }) => {
   }, []);
 
   return (
-    <NewExpenseLayout category={category}>
+    <ExpenseLayout category={categoryData}>
       <CategorySelector
-        changeCategory={(category: Category) => setCategory(category)}
+        changeCategory={(categoryData: Category) =>
+          setCategoryData(categoryData)
+        }
       />
       <div className='flex flex-col pl-4'>
         <input
@@ -67,33 +70,33 @@ const NewExpense: FC<newExpenseProps> = ({ updateInfo }) => {
           type='text'
           placeholder='NOME'
           onChange={(e) => setName(e.target.value)}
-          className={`my-auto text-lg font-medium bg-transparent outline-none ${category?.style?.textLight} border-1 ${category?.style?.placeholder}`}
+          className={`my-auto text-lg font-medium bg-transparent outline-none ${categoryData?.style?.textLight} border-1 ${categoryData?.style?.placeholder}`}
         />
         <div className='flex space-x-2'>
           <PaymentMethod
-            category={category}
-            changeMethod={(method: string) => setMethod(method)}
+            category={categoryData}
+            changeMethod={(method: string) => setPaymentMethod(method)}
           />
         </div>
       </div>
       <div className='mx-auto my-auto'>
         <span
-          className={`pr-1 text-xl font-medium ${category?.style?.textLight}`}
+          className={`pr-1 text-xl font-medium ${categoryData?.style?.textLight}`}
         >
-          <span className={category?.style?.textLight}>R$</span>
+          <span className={categoryData?.style?.textLight}>R$</span>
         </span>
         <input
           placeholder='0'
           maxLength={15}
           value={price}
           onChange={(e) => setPrice(currencyMask(e).target.value)}
-          className={`w-32 my-auto text-xl font-medium bg-transparent outline-none ${category?.style?.textLight} border-1 ${category?.style?.placeholder}`}
+          className={`w-32 my-auto text-xl font-medium bg-transparent outline-none ${categoryData?.style?.textLight} border-1 ${categoryData?.style?.placeholder}`}
         />
       </div>
       <div
-        className={`flex relative flex-col ml-auto ${category?.style?.textLight}`}
+        className={`flex relative flex-col ml-auto ${categoryData?.style?.textLight}`}
       >
-        <span className={`absolute right-0 ${category?.style?.textLight}`}>
+        <span className={`absolute right-0 ${categoryData?.style?.textLight}`}>
           {day}
         </span>
         <input
@@ -102,13 +105,15 @@ const NewExpense: FC<newExpenseProps> = ({ updateInfo }) => {
           max={lastDay}
           onChange={(e) => {
             setDay(getToday(e.target.value));
-            setDate(e.target.value);
+            setCreatedAt(e.target.value);
           }}
           className='absolute w-8 mr-2 text-transparent bg-transparent opacity-0 -right-3'
         />
-        <span className={`mt-auto ${category?.style?.textLight}`}>{month}</span>
+        <span className={`mt-auto ${categoryData?.style?.textLight}`}>
+          {month}
+        </span>
       </div>
-    </NewExpenseLayout>
+    </ExpenseLayout>
   );
 };
 
