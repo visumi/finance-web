@@ -52,11 +52,11 @@ const History: FC = () => {
       {error && data?.expenses?.length === 0 && (
         <div className='mx-auto my-auto'>
           <SmileySad
-            className='mx-auto text-purple-400'
+            className='mx-auto text-purple-200'
             size={64}
             weight='bold'
           />
-          <span className='text-xl font-bold text-purple-500'>
+          <span className='text-xl font-bold text-purple-300'>
             Erro ao carregar dados.
           </span>
         </div>
@@ -64,11 +64,11 @@ const History: FC = () => {
       {data?.expenses?.length === 0 && (
         <div className='max-w-xs mx-auto my-auto text-center'>
           <SmileyMeh
-            className='mx-auto text-purple-400 animate-bounce'
+            className='mx-auto text-purple-200 animate-bounce'
             size={64}
             weight='bold'
           />
-          <span className='text-xl font-bold text-purple-500'>
+          <span className='text-xl font-bold text-purple-300'>
             Nenhuma despesa adicionada.
           </span>
         </div>
