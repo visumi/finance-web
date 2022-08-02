@@ -82,10 +82,10 @@ const NewModal: FC<newModalProps> = ({ isOpen = false, closeModal }) => {
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-95'
               >
-                <Dialog.Panel className='w-full max-w-2xl px-6 pt-6 pb-10 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl'>
+                <Dialog.Panel className='w-full max-w-2xl px-6 pt-6 pb-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl'>
                   <Dialog.Title
                     as='h3'
-                    className='pb-2 text-2xl font-bold text-purple-900'
+                    className='text-2xl font-bold text-purple-900'
                   >
                     NOVO GASTO
                   </Dialog.Title>
