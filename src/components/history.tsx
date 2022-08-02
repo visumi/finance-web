@@ -49,7 +49,7 @@ const History: FC = () => {
           weight='bold'
         />
       )}
-      {error && (
+      {error && data?.expenses?.length === 0 && (
         <div className='mx-auto my-auto'>
           <SmileySad
             className='mx-auto text-purple-400'
