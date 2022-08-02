@@ -11,6 +11,33 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+
+/* width */
 ::-webkit-scrollbar {
-  display: none;
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e9d5ff;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6b21a8;
+  border-radius: 10px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
 }

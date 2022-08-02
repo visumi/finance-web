@@ -142,14 +142,17 @@ const History: FC = () => {
   ];
 
   return (
-    <div className='w-2/5 h-screen max-h-screen p-4 mx-auto mb-8 bg-white rounded-lg shadow-lg'>
-      <h1 className='text-2xl font-bold text-purple-900'>
-        HISTÓRICO DE GASTOS
-      </h1>
-      <h2 className='mb-4 text-lg font-bold text-purple-700'>
-        {getMonth(new Date().toISOString(), true)} - {new Date().getFullYear()}
-      </h2>
-      <div className='h-full space-y-4 overflow-y-auto max-h-96'>
+    <div className='flex flex-col gap-2 p-4 overflow-hidden bg-white rounded-lg shadow-lg'>
+      <div>
+        <h1 className='text-2xl font-bold text-purple-900'>
+          HISTÓRICO DE GASTOS
+        </h1>
+        <h2 className='text-lg font-bold text-purple-700'>
+          {getMonth(new Date().toISOString(), true)} -{' '}
+          {new Date().getFullYear()}
+        </h2>
+      </div>
+      <div className='space-y-4 overflow-y-auto overflow-x-hidden'>
         {data.map((expense) => (
           <Expense data={expense} />
         ))}
