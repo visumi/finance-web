@@ -13,6 +13,10 @@ const History: FC = () => {
     fetcher
   );
 
+  // console.log(data.expenses.map((ex: ExpenseModel) => {
+  //   return Number(ex.price.replace('.', '').replace(',', '.'));
+  // }));
+
   return (
     <div className='flex flex-col h-screen gap-2 p-4 overflow-hidden bg-white rounded-lg shadow-lg'>
       <div>
@@ -37,7 +41,6 @@ const History: FC = () => {
               leaveFrom='opacity-100'
               leaveTo='opacity-0'
             >
-              {' '}
               <Expense key={i} data={expense} />
             </Transition>
           ))}

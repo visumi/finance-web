@@ -1,5 +1,3 @@
-import Category from "./category";
-
 export interface Expense {
   name: string;
   category: number;
