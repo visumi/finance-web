@@ -11,7 +11,9 @@ const Meta: FC = () => {
           <span className='text-lg font-medium text-slate-50'>
             Gasto mensal
           </span>
-          <MetaBar />
+          <div
+          className='w-full h-4 bg-slate-50 animate-pulse transition-width duration-1000 rounded-full'
+        ></div>
           <div className='flex justify-between'>
             <span className='text-lg font-medium animate-pulse text-slate-50 rounded-xl'>
               R$00,00

@@ -2,6 +2,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import { FC, Fragment, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useSWRConfig } from 'swr';
 import { Expense } from '../../models/expense';
 import NewExpense from './new-expense';
 
@@ -19,6 +20,8 @@ const NewModal: FC<newModalProps> = ({ isOpen = false, closeModal }) => {
     name: '',
   });
   const [allowSubmit, setAllowSubmit] = useState(false);
+
+  const { mutate } = useSWRConfig();
 
   useEffect(() => {
     if (
@@ -47,6 +50,7 @@ const NewModal: FC<newModalProps> = ({ isOpen = false, closeModal }) => {
       body: JSON.stringify(formattedExpense),
     }).then((res) => {
       if (res?.status === 200) {
+        mutate('http://localhost:4000/expense');
         toast.success('Despesa criada!');
         closeModal();
       } else {

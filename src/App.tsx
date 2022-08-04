@@ -10,10 +10,7 @@ const App = () => {
 
   const navigate = useNavigate();
 
-  const { data, error } = useSWR(
-    ['http://localhost:4000/account', { credentials: 'include' }],
-    fetcher
-  );
+  const { data, error } = useSWR('http://localhost:4000/account', fetcher);
 
   useEffect(() => {
     if (!(!error && !data) && !data.loggedIn) {

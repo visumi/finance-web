@@ -8,14 +8,7 @@ import { getMonth } from '../utils/getMonth';
 import Expense from './expense';
 
 const History: FC = () => {
-  const { data, error } = useSWR(
-    ['http://localhost:4000/expense', { credentials: 'include' }],
-    fetcher
-  );
-
-  // console.log(data.expenses.map((ex: ExpenseModel) => {
-  //   return Number(ex.price.replace('.', '').replace(',', '.'));
-  // }));
+  const { data, error } = useSWR('http://localhost:4000/expense', fetcher);
 
   return (
     <div className='flex flex-col h-screen gap-2 p-4 overflow-hidden bg-white rounded-lg shadow-lg'>
@@ -30,20 +23,42 @@ const History: FC = () => {
       </div>
       <div className='space-y-3 overflow-x-hidden overflow-y-auto'>
         {data?.expenses?.length > 0 &&
-          data.expenses.map((expense: ExpenseModel, i: number) => (
-            <Transition
-              appear
-              show={true}
-              enter='transition ease-in-out duration-1000 transform'
-              enterFrom='opacity-0 scale-0'
-              enterTo='opacity-100 scale-100'
-              leave='transition ease-in-out duration-300 transform'
-              leaveFrom='opacity-100'
-              leaveTo='opacity-0'
-            >
-              <Expense key={i} data={expense} />
-            </Transition>
-          ))}
+          data.expenses.map((expense: ExpenseModel, i: number) => {
+            let delay;
+
+            switch (i) {
+              case 1:
+                delay = 'delay-200';
+                break;
+              case 2:
+                delay = 'delay-300';
+                break;
+              case 3:
+                delay = 'delay-500';
+                break;
+              case 4:
+                delay = 'delay-700';
+                break;
+              default:
+                delay = 'delay-100';
+                break;
+            }
+
+            return (
+              <Transition
+                appear
+                show={true}
+                enter={`transition-transform ease-in-out ${delay} transform`}
+                enterFrom='opacity-0 -translate-x-96'
+                enterTo='opacity-100 translate-x-0'
+                leave='transition ease-in-out duration-300 transform'
+                leaveFrom='opacity-100'
+                leaveTo='opacity-0'
+              >
+                <Expense key={i} data={expense} />
+              </Transition>
+            );
+          })}
       </div>
       {!data && !error && (
         <CircleNotch

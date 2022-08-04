@@ -1,5 +1,5 @@
 import { Transition } from '@headlessui/react';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 
 const MetaBar: FC = () => {
   const [value, setValue] = useState('w-4/5');
