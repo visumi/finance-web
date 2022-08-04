@@ -14,7 +14,7 @@ const MetaBar: FC = () => {
         enterTo='w-full'
       >
         <div
-          className={`${value} h-4 bg-green-700 transition-width duration-1000 rounded-full`}
+          className={`${value} h-4 bg-green-700 rounded-full`}
         ></div>
       </Transition>
     </div>
