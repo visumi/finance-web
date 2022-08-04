@@ -1,8 +1,17 @@
-import { FC } from 'react';
+
+import { useAtom } from 'jotai';
+import { FC, useEffect } from 'react';
+import { expensesAtom } from '../utils/atoms';
 import MetaBar from './meta-bar';
 
 const Meta: FC = () => {
   const data: boolean = true;
+
+  const [expenses, setExpenses] = useAtom(expensesAtom);
+  
+  useEffect(() => {
+    console.log(expenses);
+  }, [expenses]);
 
   return (
     <>

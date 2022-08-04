@@ -1,14 +1,22 @@
 import { Transition } from '@headlessui/react';
+import { atom, useAtom } from 'jotai';
 import { CircleNotch, SmileyMeh, SmileySad } from 'phosphor-react';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import useSWR from 'swr';
 import { Expense as ExpenseModel } from '../models/expense';
+import { expensesAtom } from '../utils/atoms';
 import fetcher from '../utils/fetcher';
 import { getMonth } from '../utils/getMonth';
 import Expense from './expense';
 
 const History: FC = () => {
   const { data, error } = useSWR('http://localhost:4000/expense', fetcher);
+
+  const [expenses, setExpenses] = useAtom(expensesAtom);
+  
+  useEffect(() => {
+    setExpenses(data?.expenses);
+  }, [data]);
 
   return (
     <div className='flex flex-col h-screen gap-2 p-4 overflow-hidden bg-white rounded-lg shadow-lg'>
@@ -46,6 +54,7 @@ const History: FC = () => {
 
             return (
               <Transition
+                key={i}
                 appear
                 show={true}
                 enter={`transition-transform ease-in-out ${delay} transform`}
