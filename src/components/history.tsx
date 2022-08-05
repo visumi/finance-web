@@ -1,7 +1,7 @@
 import { Transition } from '@headlessui/react';
 import { atom, useAtom } from 'jotai';
 import { CircleNotch, SmileyMeh, SmileySad } from 'phosphor-react';
-import { FC, useEffect } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import { Expense as ExpenseModel } from '../models/expense';
 import { expensesAtom } from '../utils/atoms';
@@ -13,9 +13,15 @@ const History: FC = () => {
   const { data, error } = useSWR('http://localhost:4000/expense', fetcher);
 
   const [expenses, setExpenses] = useAtom(expensesAtom);
-  
+  const [renders, setRenders] = useState(0);
+
+  const countRender = useCallback(() => {
+    setRenders(renders + 1);
+  }, [renders, setRenders]);
+
   useEffect(() => {
     setExpenses(data?.expenses);
+    countRender();
   }, [data]);
 
   return (
@@ -56,8 +62,8 @@ const History: FC = () => {
               <Transition
                 key={i}
                 appear
-                show={true}
-                enter={`transition-transform ease-in-out ${delay} transform`}
+                show
+                enter={`transition-transform ease-in-out ${renders < 2 ? delay : ''} transform`}
                 enterFrom='opacity-0 -translate-x-96'
                 enterTo='opacity-100 translate-x-0'
                 leave='transition ease-in-out duration-300 transform'
