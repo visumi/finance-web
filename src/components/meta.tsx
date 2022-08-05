@@ -8,6 +8,7 @@ import { currencyMaskString } from '../utils/currencyMask';
 
 const Meta: FC = () => {
   const [expenses, setExpenses] = useAtom(expensesAtom);
+  const [limit, setLimit] = useState(2000);
   const [total, setTotal] = useState(0);
   const [barSize, setBarSize] = useState('w-0');
   const [barState, setBarState] = useState({
@@ -24,7 +25,7 @@ const Meta: FC = () => {
     });
     setTotal(Number(sum.toFixed(2)));
 
-    let percent = (sum * 100) / 2500;
+    let percent = (sum * 100) / limit;
     setBarSize(getBarSize(percent));
     setBarState(calculateBarState(percent));
   }, [expenses]);
@@ -132,7 +133,7 @@ const Meta: FC = () => {
               R${currencyMaskString(total)}
             </span>
             <span className={`text-lg font-medium ${barState.text} rounded-xl`}>
-              R$2500,00
+              R${currencyMaskString(limit)}
             </span>
           </div>
         </div>
