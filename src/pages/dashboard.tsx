@@ -40,7 +40,7 @@ const Dashboard = ({ user }: DashboardProps) => {
         </div>
         <SignOut
           onClick={() => logout()}
-          className='my-auto ml-auto mr-4 text-purple-50 hover:text-purple-200 hover:scale-105 hover:cursor-pointer'
+          className='my-auto ml-auto transition ease-in-out duration-75 mr-4 text-purple-50 hover:text-purple-200 hover:scale-105 hover:cursor-pointer'
           size={32}
           weight='fill'
         />
