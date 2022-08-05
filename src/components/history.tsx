@@ -94,7 +94,7 @@ const History: FC = () => {
           </span>
         </div>
       )}
-      {data?.expenses?.length === 0 && (
+      {!error && data?.expenses?.length === 0 && (
         <div className='max-w-xs mx-auto my-auto text-center'>
           <SmileyMeh
             className='mx-auto text-purple-200 animate-bounce'
