@@ -8,7 +8,7 @@ import { currencyMaskString } from '../utils/currencyMask';
 
 const Meta: FC = () => {
   const [expenses, setExpenses] = useAtom(expensesAtom);
-  const [limit, setLimit] = useState(2000);
+  const [limit, setLimit] = useState(1500);
   const [total, setTotal] = useState(0);
   const [barSize, setBarSize] = useState('w-0');
   const [barState, setBarState] = useState({
@@ -74,6 +74,7 @@ const Meta: FC = () => {
 
   const sizes: any = {
     0: 'w-0',
+    1: 'w-[2%]',
     5: 'w-[5%]',
     10: 'w-[10%]',
     15: 'w-[15%]',

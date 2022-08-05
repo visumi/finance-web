@@ -1,5 +1,7 @@
 import { CreditCard, CurrencyCircleDollar, X } from 'phosphor-react';
 import { FC, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { mutate } from 'swr';
 import { Expense as ExpenseModel } from '../models/expense';
 import categories from '../utils/categories';
 import { getMonth } from '../utils/getMonth';
@@ -41,13 +43,34 @@ const Expense: FC<expenseProps> = ({ data }) => {
     setCategory(categories.filter((c) => c.id === data.category)[0]);
   }, []);
 
+  const deleteExpense = (id: number) => {
+    fetch(`http://localhost:4000/expense/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    }).then((res) => {
+      if (res?.status === 200) {
+        mutate('http://localhost:4000/expense');
+        toast.success('Despesa removida!');
+      } else {
+        toast.error('Erro ao remover despesa.');
+      }
+    });
+  };
+
   return (
     <ExpenseLayout category={category}>
-      <CategoryIcon
-        icon={category?.style?.icon}
-        bg={category?.style?.bg}
-        iconColor={category?.style?.iconColor}
-      />
+      <div onClick={() => deleteExpense(data.id)}>
+        <CategoryIcon
+          icon={category?.style?.icon}
+          bg={category?.style?.bg}
+          iconColor={category?.style?.iconColor}
+          deletable={true}
+        />
+      </div>
       <div className='flex flex-col pl-4'>
         <input
           maxLength={18}
