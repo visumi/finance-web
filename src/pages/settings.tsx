@@ -3,23 +3,45 @@ import clsx from 'clsx';
 import { useAtom } from 'jotai';
 import { Gear } from 'phosphor-react';
 import { useEffect, useState } from 'react';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
+import useSWR from 'swr';
 import Header from '../components/header';
 import { userAtom } from '../utils/atoms';
 import { currencyMask } from '../utils/currencyMask';
+import fetcher from '../utils/fetcher';
 
 const Settings = () => {
+  const { data, error } = useSWR('http://localhost:4000/limit', fetcher);
+
   const [user] = useAtom(userAtom);
-  const [price, setPrice] = useState('0');
+  const [limit, setLimit] = useState(data?.rows[0]?.expense_limit);
   const [allowSubmit, setAllowSubmit] = useState(false);
 
   useEffect(() => {
-    if (price) {
+    if (limit) {
       setAllowSubmit(true);
     } else {
       setAllowSubmit(false);
     }
-  }, [price]);
+  }, [limit]);
+
+  const postSettings = () => {
+    fetch('http://localhost:4000/limit', {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({ expense_limit: limit }),
+    }).then((res) => {
+      if (res?.status === 200) {
+        toast.success('Configuraçoes salvas!');
+      } else {
+        toast.error('Erro ao salvar configurações.');
+      }
+    });
+  };
 
   return (
     <div className='flex px-[30%] py-8 mx-auto gap-4 flex-col h-screen overflow-hidden bg-no-repeat bg-cover bg-waves'>
@@ -53,10 +75,9 @@ const Settings = () => {
             LIMITE DE GASTO MENSAL
           </h2>
           <input
-            placeholder='0'
             maxLength={15}
-            value={`R$ ${price}`}
-            onChange={(e) => setPrice(currencyMask(e).target.value)}
+            value={`R$ ${limit}`}
+            onChange={(e) => setLimit(currencyMask(e).target.value)}
             className='w-1/2 px-2 py-1 text-lg font-medium text-purple-700 placeholder-purple-400 border-2 border-purple-300 rounded-lg outline-none'
           ></input>
           <div className='flex justify-end mt-4'>
@@ -74,7 +95,7 @@ const Settings = () => {
                 }
               )}
               onClick={() => {
-                console.log(price);
+                postSettings();
               }}
             >
               Salvar
