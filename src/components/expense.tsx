@@ -9,11 +9,11 @@ import { getToday } from '../utils/getToday';
 import CategoryIcon from './category-picker/category-icon';
 import ExpenseLayout from './new-expense/expense-layout';
 
-interface expenseProps {
+interface ExpenseProps {
   data: ExpenseModel;
 }
 
-const Expense: FC<expenseProps> = ({ data }) => {
+const Expense: FC<ExpenseProps> = ({ data }) => {
   const [expense, setExpense] = useState({
     name: 'ERRO',
     category: -1,
@@ -63,7 +63,7 @@ const Expense: FC<expenseProps> = ({ data }) => {
 
   return (
     <ExpenseLayout category={category}>
-      <div onClick={() => deleteExpense(data.id)}>
+      <div onClick={() => deleteExpense(data.id || -1)}>
         <CategoryIcon
           icon={category?.style?.icon}
           bg={category?.style?.bg}

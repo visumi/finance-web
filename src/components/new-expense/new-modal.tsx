@@ -6,12 +6,12 @@ import { useSWRConfig } from 'swr';
 import { Expense } from '../../models/expense';
 import NewExpense from './new-expense';
 
-interface newModalProps {
+interface NewModalProps {
   isOpen: boolean;
   closeModal(): void;
 }
 
-const NewModal: FC<newModalProps> = ({ isOpen = false, closeModal }) => {
+const NewModal: FC<NewModalProps> = ({ isOpen = false, closeModal }) => {
   const [expense, setExpense] = useState({
     category: -1,
     created_at: '',

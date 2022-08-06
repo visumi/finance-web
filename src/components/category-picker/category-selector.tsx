@@ -5,11 +5,11 @@ import Category from '../../models/category';
 import categories from '../../utils/categories';
 import CategoryIcon from './category-icon';
 
-interface categorySelectorProps {
+interface CategorySelectorProps {
   changeCategory(category: Category): void;
 }
 
-const CategorySelector: FC<categorySelectorProps> = ({ changeCategory }) => {
+const CategorySelector: FC<CategorySelectorProps> = ({ changeCategory }) => {
   const [open, setOpen] = useState(false);
   let [categoryData, setCategoryData] = useState({
     id: -1,

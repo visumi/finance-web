@@ -9,11 +9,11 @@ import CategorySelector from '../category-picker/category-selector';
 import PaymentMethod from '../payment-method';
 import ExpenseLayout from './expense-layout';
 
-interface newExpenseProps {
+interface NewExpenseProps {
   updateInfo(data: Expense): void;
 }
 
-const NewExpense: FC<newExpenseProps> = ({ updateInfo }) => {
+const NewExpense: FC<NewExpenseProps> = ({ updateInfo }) => {
   const [firstDay, setFirstDay] = useState('');
   const [lastDay, setLastDay] = useState('');
   const [day, setDay] = useState('');

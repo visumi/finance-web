@@ -1,7 +1,7 @@
 import { Asterisk, IconProps, Trash } from 'phosphor-react';
 import { FC } from 'react';
 
-interface categoryIconProps {
+interface CategoryIconProps {
   iconColor: string;
   deletable?: boolean;
   bg: string;
@@ -11,7 +11,7 @@ interface categoryIconProps {
   >;
 }
 
-const CategoryIcon: FC<categoryIconProps> = ({
+const CategoryIcon: FC<CategoryIconProps> = ({
   iconColor = 'text-slate-700',
   deletable = false,
   bg = 'bg-slate-100 hover:bg-slate-200',

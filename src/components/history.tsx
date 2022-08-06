@@ -12,7 +12,7 @@ import Expense from './expense';
 const History: FC = () => {
   const { data, error } = useSWR('http://localhost:4000/expense', fetcher);
 
-  const [expenses, setExpenses] = useAtom(expensesAtom);
+  const [, setExpenses] = useAtom(expensesAtom);
   const [renders, setRenders] = useState(0);
 
   const countRender = useCallback(() => {
@@ -25,7 +25,7 @@ const History: FC = () => {
   }, [data]);
 
   return (
-    <div className='flex flex-col h-screen gap-2 p-4 overflow-hidden bg-white rounded-lg shadow-lg'>
+    <div className='flex flex-col flex-grow gap-2 p-4 overflow-hidden bg-white rounded-lg shadow-lg'>
       <div>
         <h1 className='text-2xl font-bold text-purple-900'>
           HISTÓRICO DE GASTOS

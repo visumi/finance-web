@@ -7,8 +7,8 @@ import { convertPrice } from '../utils/convertPrice';
 import { currencyMaskString } from '../utils/currencyMask';
 
 const Meta: FC = () => {
-  const [expenses, setExpenses] = useAtom(expensesAtom);
-  const [limit, setLimit] = useState(1500);
+  const [expenses] = useAtom(expensesAtom);
+  const [limit] = useState(1500);
   const [total, setTotal] = useState(0);
   const [barSize, setBarSize] = useState('w-0');
   const [barState, setBarState] = useState({
@@ -100,7 +100,7 @@ const Meta: FC = () => {
   return (
     <>
       {!expenses && (
-        <div className='flex flex-col justify-around w-full p-4 bg-gradient-to-r from-slate-400 to-slate-600 h-28 rounded-xl'>
+        <div className='flex flex-col justify-around w-full p-4 shadow-md bg-gradient-to-r from-slate-400 to-slate-600 h-28 rounded-xl'>
           <span className='text-lg font-medium text-slate-50'>
             Gasto mensal
           </span>
@@ -117,7 +117,7 @@ const Meta: FC = () => {
       )}
       {expenses && (
         <div
-          className={`flex flex-col justify-around w-full p-4 bg-gradient-to-r h-28 rounded-xl ${barState.bg}`}
+          className={`flex flex-col justify-around w-full p-4 bg-gradient-to-r shadow-md h-28 rounded-xl ${barState.bg}`}
         >
           <span className={`text-lg font-medium ${barState.text}`}>
             Gasto mensal

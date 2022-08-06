@@ -4,12 +4,12 @@ import { FC, useEffect, useState } from 'react';
 import Category from '../models/category';
 import { Tooltip } from './tooltip';
 
-interface paymentMethodProps {
+interface PaymentMethodProps {
   changeMethod(method: string): void;
   category: Category;
 }
 
-const PaymentMethod: FC<paymentMethodProps> = ({
+const PaymentMethod: FC<PaymentMethodProps> = ({
   changeMethod,
   category = {
     id: 0,
