@@ -18,7 +18,7 @@ const Dashboard = () => {
         appear
         show
         className='flex flex-col flex-grow gap-4'
-        enter='transition ease-in-out duration-1000 delay-100 transform'
+        enter='transition ease-in-out duration-500 transform'
         enterFrom='opacity-0'
         enterTo='opacity-100'
         leave='transition ease-in-out duration-300 transform'
@@ -29,7 +29,7 @@ const Dashboard = () => {
           <Meta />
           <button
             onClick={() => setIsOpen(true)}
-            className='flex w-full py-2 mt-4 rounded-full shadow-md bg-gradient-to-r from-purple-600 to-purple-800 hover:bg-gradient-to-r hover:from-purple-600 hover:to-purple-500 text-purple-50'
+            className='flex w-full py-2 mt-4 rounded-full shadow-sm bg-gradient-to-r from-purple-600 to-purple-800 hover:bg-gradient-to-r hover:from-purple-600 hover:to-purple-500 text-purple-50'
           >
             <Plus className='my-auto ml-auto' size={24} weight='bold' />
             <span className='my-auto ml-2 mr-auto text-lg text-medium'>

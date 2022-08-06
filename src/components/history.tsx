@@ -1,6 +1,6 @@
 import { Transition } from '@headlessui/react';
-import { atom, useAtom } from 'jotai';
-import { CircleNotch, SmileyMeh, SmileySad } from 'phosphor-react';
+import { useAtom } from 'jotai';
+import { CircleNotch, CurrencyDollar, SmileySad } from 'phosphor-react';
 import { FC, useCallback, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import { Expense as ExpenseModel } from '../models/expense';
@@ -63,7 +63,9 @@ const History: FC = () => {
                 key={i}
                 appear
                 show
-                enter={`transition-transform ease-in-out ${renders < 2 ? delay : ''} transform`}
+                enter={`transition-transform ease-in-out ${
+                  renders < 2 ? delay : ''
+                } transform`}
                 enterFrom='opacity-0 -translate-x-96'
                 enterTo='opacity-100 translate-x-0'
                 leave='transition ease-in-out duration-300 transform'
@@ -96,7 +98,7 @@ const History: FC = () => {
       )}
       {!error && data?.expenses?.length === 0 && (
         <div className='max-w-xs mx-auto my-auto text-center'>
-          <SmileyMeh
+          <CurrencyDollar
             className='mx-auto text-purple-200 animate-bounce'
             size={64}
             weight='bold'

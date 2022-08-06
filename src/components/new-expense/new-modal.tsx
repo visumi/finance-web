@@ -101,7 +101,7 @@ const NewModal: FC<NewModalProps> = ({ isOpen = false, closeModal }) => {
                   <div className='flex mt-4'>
                     <button
                       type='button'
-                      className='justify-center px-4 py-2 ml-auto text-sm font-medium text-purple-900 bg-purple-100 border border-transparent rounded-md hover:bg-purple-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2'
+                      className='justify-center px-4 py-2 ml-auto text-sm font-medium text-purple-900 transition duration-200 ease-out bg-purple-100 border border-transparent rounded-md hover:bg-purple-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2'
                       onClick={closeModal}
                     >
                       Cancelar
@@ -111,7 +111,7 @@ const NewModal: FC<NewModalProps> = ({ isOpen = false, closeModal }) => {
                       disabled={!allowSubmit}
                       className={clsx(
                         {
-                          'justify-center px-4 py-2 ml-2 text-sm font-medium bg-purple-900 border hover:cursor-pointer border-transparent rounded-md text-purple-50 hover:bg-purple-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2':
+                          'justify-center px-4 py-2 ml-2 transition ease-out duration-200 text-sm font-medium bg-purple-900 border hover:cursor-pointer border-transparent rounded-md text-purple-50 hover:bg-purple-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2':
                             allowSubmit,
                         },
                         {

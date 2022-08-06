@@ -117,7 +117,7 @@ const Meta: FC = () => {
       )}
       {expenses && (
         <div
-          className={`flex flex-col justify-around w-full p-4 bg-gradient-to-r shadow-md h-28 rounded-xl ${barState.bg}`}
+          className={`flex flex-col justify-around w-full p-4 bg-gradient-to-r shadow-sm h-28 rounded-xl ${barState.bg}`}
         >
           <span className={`text-lg font-medium ${barState.text}`}>
             Gasto mensal
