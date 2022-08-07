@@ -1,5 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import clsx from 'clsx';
+import { CircleNotch } from 'phosphor-react';
 import { FC, Fragment, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useSWRConfig } from 'swr';
@@ -20,6 +21,7 @@ const NewModal: FC<NewModalProps> = ({ isOpen = false, closeModal }) => {
     name: '',
   });
   const [allowSubmit, setAllowSubmit] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { mutate } = useSWRConfig();
 
@@ -38,6 +40,8 @@ const NewModal: FC<NewModalProps> = ({ isOpen = false, closeModal }) => {
   }, [expense]);
 
   const postExpense = () => {
+    setLoading(true);
+    setAllowSubmit(false);
     const formattedExpense: any = Object.assign({}, expense);
     formattedExpense.category = expense.category;
     fetch('http://localhost:4000/expense', {
@@ -49,6 +53,8 @@ const NewModal: FC<NewModalProps> = ({ isOpen = false, closeModal }) => {
       credentials: 'include',
       body: JSON.stringify(formattedExpense),
     }).then((res) => {
+      setLoading(false);
+      setAllowSubmit(true);
       if (res?.status === 200) {
         mutate('http://localhost:4000/expense');
         toast.success('Despesa criada!');
@@ -117,6 +123,10 @@ const NewModal: FC<NewModalProps> = ({ isOpen = false, closeModal }) => {
                         {
                           'justify-center px-4 py-2 ml-2 text-sm font-medium bg-purple-900 opacity-30 border border-transparent rounded-md text-purple-50 hover:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2':
                             !allowSubmit,
+                        },
+                        {
+                          'justify-center px-4 py-2 text-sm font-medium bg-purple-900 opacity-30 border border-transparent rounded-md text-purple-50 hover:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2':
+                            loading,
                         }
                       )}
                       onClick={() => {
@@ -125,7 +135,14 @@ const NewModal: FC<NewModalProps> = ({ isOpen = false, closeModal }) => {
                         }
                       }}
                     >
-                      Salvar
+                      {loading && (
+                        <CircleNotch
+                          size={16}
+                          className='animate-spin'
+                          weight='fill'
+                        />
+                      )}
+                      {!loading && 'Salvar'}
                     </button>
                   </div>
                 </Dialog.Panel>

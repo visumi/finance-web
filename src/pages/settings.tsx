@@ -1,7 +1,7 @@
 import { Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import { useAtom } from 'jotai';
-import { Gear } from 'phosphor-react';
+import { CircleNotch, Gear } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import useSWR from 'swr';
@@ -16,6 +16,7 @@ const Settings = () => {
   const [user] = useAtom(userAtom);
   const [limit, setLimit] = useState('');
   const [allowSubmit, setAllowSubmit] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (limit) {
@@ -30,10 +31,10 @@ const Settings = () => {
       setLimit(data?.rows[0].expense_limit);
     }
   }, [data]);
-  
-
 
   const postSettings = () => {
+    setAllowSubmit(false);
+    setLoading(true);
     fetch('http://localhost:4000/limit', {
       method: 'PUT',
       headers: {
@@ -43,6 +44,8 @@ const Settings = () => {
       credentials: 'include',
       body: JSON.stringify({ expense_limit: limit }),
     }).then((res) => {
+      setAllowSubmit(true);
+      setLoading(false);
       if (res?.status === 200) {
         toast.success('Configuraçoes salvas!');
       } else {
@@ -100,13 +103,20 @@ const Settings = () => {
                 {
                   'justify-center px-4 py-2 text-sm font-medium bg-purple-900 opacity-30 border border-transparent rounded-md text-purple-50 hover:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2':
                     !allowSubmit,
+                },
+                {
+                  'justify-center px-4 py-2 text-sm font-medium bg-purple-900 opacity-30 border border-transparent rounded-md text-purple-50 hover:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2':
+                    loading,
                 }
               )}
               onClick={() => {
                 postSettings();
               }}
             >
-              Salvar
+              {loading && (
+                <CircleNotch size={16} className='animate-spin' weight='fill' />
+              )}
+              {!loading && 'Salvar'}
             </button>
           </div>
         </div>

@@ -4,7 +4,7 @@ import {
   CurrencyDollarSimple,
   HandPalm,
   TrendUp,
-  Wallet,
+  Wallet
 } from 'phosphor-react';
 import Images from '../utils/images';
 
@@ -48,7 +48,7 @@ const Login = () => {
                 size={48}
                 weight='fill'
               />
-              <span className='font-medium text-lg text-purple-800'>
+              <span className='text-lg font-medium text-purple-800'>
                 Controle seus gastos diários.
               </span>
             </div>
@@ -60,7 +60,7 @@ const Login = () => {
                 size={48}
                 weight='fill'
               />
-              <span className='font-medium text-lg text-purple-800'>
+              <span className='text-lg font-medium text-purple-800'>
                 Defina seu limite de gastos.
               </span>
             </div>
@@ -72,7 +72,7 @@ const Login = () => {
                 size={48}
                 weight='fill'
               />
-              <span className='font-medium text-lg text-purple-800'>
+              <span className='text-lg font-medium text-purple-800'>
                 Relatório de gastos mensais.
               </span>
             </div>

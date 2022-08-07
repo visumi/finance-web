@@ -11,8 +11,8 @@ import fetcher from './utils/fetcher';
 const App = () => {
   console.log('Desenvolvido por Vinícius Isumi - https://isumi.com.br');
 
-  const [user, setUser]= useAtom(userAtom);
-  
+  const [, setUser] = useAtom(userAtom);
+
   const navigate = useNavigate();
 
   const { data, error } = useSWR('http://localhost:4000/account', fetcher);
