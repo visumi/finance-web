@@ -14,7 +14,7 @@ const Settings = () => {
   const { data, error } = useSWR('http://localhost:4000/limit', fetcher);
 
   const [user] = useAtom(userAtom);
-  const [limit, setLimit] = useState(data?.rows[0]?.expense_limit);
+  const [limit, setLimit] = useState('');
   const [allowSubmit, setAllowSubmit] = useState(false);
 
   useEffect(() => {
@@ -24,6 +24,14 @@ const Settings = () => {
       setAllowSubmit(false);
     }
   }, [limit]);
+
+  useEffect(() => {
+    if (!limit) {
+      setLimit(data?.rows[0].expense_limit);
+    }
+  }, [data]);
+  
+
 
   const postSettings = () => {
     fetch('http://localhost:4000/limit', {

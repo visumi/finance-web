@@ -1,14 +1,17 @@
 import { Transition } from '@headlessui/react';
 import { useAtom } from 'jotai';
 import { FC, useEffect, useState } from 'react';
+import useSWR from 'swr';
 import { Expense } from '../models/expense';
 import { expensesAtom } from '../utils/atoms';
 import { convertPrice } from '../utils/convertPrice';
 import { currencyMaskString } from '../utils/currencyMask';
+import fetcher from '../utils/fetcher';
 
 const Meta: FC = () => {
+  const { data } = useSWR('http://localhost:4000/limit', fetcher);
   const [expenses] = useAtom(expensesAtom);
-  const [limit] = useState(1500);
+  const [limit, setLimit] = useState(0);
   const [total, setTotal] = useState(0);
   const [barSize, setBarSize] = useState('w-0');
   const [barState, setBarState] = useState({
@@ -19,6 +22,9 @@ const Meta: FC = () => {
   });
 
   useEffect(() => {
+    if (data?.rows[0].expense_limit) {
+      setLimit(convertPrice(data?.rows[0].expense_limit));
+    }
     let sum = 0;
     expenses?.forEach((expense: Expense) => {
       sum += convertPrice(expense.price);
@@ -28,7 +34,7 @@ const Meta: FC = () => {
     let percent = (sum * 100) / limit;
     setBarSize(getBarSize(percent));
     setBarState(calculateBarState(percent));
-  }, [expenses]);
+  }, [expenses, limit, data]);
 
   const calculateBarState = (barSize: number): any => {
     if (barSize <= 50) {
