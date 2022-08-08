@@ -36,7 +36,7 @@ const Header = () => {
           weight='fill'
         />
       </Link>
-      <Link className='my-auto' to='/settings'>
+      <Link className='my-auto' to='/dashboard/settings'>
         <Gear
           className='transition-transform ease-in-out duration-75 mr-4 text-purple-50 hover:text-purple-200 hover:rotate-90 hover:scale-105 hover:cursor-pointer'
           size={32}

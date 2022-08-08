@@ -4,6 +4,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import useSWR from 'swr';
 import Dashboard from './pages/dashboard';
 import Login from './pages/login';
+import MetaHistory from './pages/meta-history';
 import Settings from './pages/settings';
 import { userAtom } from './utils/atoms';
 import fetcher from './utils/fetcher';
@@ -30,9 +31,11 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path='/' element={<Login />} />
-      <Route path='/dashboard' element={<Dashboard />} />
-      <Route path='/settings' element={<Settings />} />
+      <Route path='/'  element={<Login />} />
+      <Route path='/dashboard' element={<Dashboard />}>
+        <Route path='' element={<MetaHistory />} />
+        <Route path='/dashboard/settings' element={<Settings />} />
+      </Route>
     </Routes>
   );
 };
