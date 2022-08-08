@@ -106,7 +106,7 @@ const Meta: FC = () => {
   return (
     <>
       {!expenses && (
-        <div className='flex flex-col justify-around w-full p-4 shadow-md bg-gradient-to-r from-slate-400 to-slate-600 h-28 rounded-xl'>
+        <div className='flex flex-col justify-around w-full p-4 shadow-sm bg-gradient-to-r from-slate-400 to-slate-600 h-28 rounded-xl'>
           <span className='text-lg font-medium text-slate-50'>
             Gasto mensal
           </span>
