@@ -15,7 +15,7 @@ const Header = () => {
   };
 
   return (
-    <div className='flex h-20 p-2 rounded-lg shadow-lg bg-poly2'>
+    <div className='flex h-20 p-2 rounded-lg shadow-lg bg-poly2 flex-shrink-0'>
       <img
         className='my-auto ml-4 border-2 border-purple-400 rounded-full h-14 w-14'
         src={user?.img || images.UserImg}
