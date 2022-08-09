@@ -17,13 +17,13 @@ const Login = () => {
 
   return (
     <div className='flex flex-col w-full p-12 gap-8 h-screen bg-no-repeat bg-cover bg-poly'>
-      <div className='flex justify-center gap-2 px-4 py-2 mx-auto bg-purple-800 rounded-full shadow-md left-1/2'>
+      <div className='flex justify-center gap-2 px-4 py-2 mt- mx-auto bg-purple-800 rounded-full shadow-md left-1/2'>
       <WarningCircle className='my-auto text-purple-50' size={20} weight="bold" />
         <span className='text-purple-100'>
           Projeto desenvolvido apenas para aprendizado, não forneça dados reais.
         </span>
       </div>
-      <div className='relative flex flex-col p-16 mx-auto rounded-lg shadow-lg bg-purple-50'>
+      <div className='relative flex flex-col my-auto p-16 mx-auto rounded-lg shadow-lg bg-purple-50'>
         <TrendUp
           className='absolute left-0 bottom-[-10px] text-purple-500 opacity-20'
           size={256}
