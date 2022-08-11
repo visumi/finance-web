@@ -6,7 +6,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <HashRouter>
+    <HashRouter basename='https://visumi.github.io/finance-web'>
       <App />
     </HashRouter>
   </React.StrictMode>
