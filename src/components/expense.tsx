@@ -44,7 +44,7 @@ const Expense: FC<ExpenseProps> = ({ data }) => {
   }, []);
 
   const deleteExpense = (id: number) => {
-    fetch(`http://localhost:4000/expense/${id}`, {
+    fetch(`https://isumi-finance-back.herokuapp.com/${id}`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
@@ -53,7 +53,7 @@ const Expense: FC<ExpenseProps> = ({ data }) => {
       credentials: 'include',
     }).then((res) => {
       if (res?.status === 200) {
-        mutate('http://localhost:4000/expense');
+        mutate('https://isumi-finance-back.herokuapp.com/expense');
         toast.success('Despesa removida!');
       } else {
         toast.error('Erro ao remover despesa.');

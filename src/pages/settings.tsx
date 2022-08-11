@@ -8,7 +8,7 @@ import { currencyMask } from '../utils/currencyMask';
 import fetcher from '../utils/fetcher';
 
 const Settings = () => {
-  const { data } = useSWR('http://localhost:4000/limit', fetcher);
+  const { data } = useSWR('https://isumi-finance-back.herokuapp.com/limit', fetcher);
 
   const [limit, setLimit] = useState('');
   const [allowSubmit, setAllowSubmit] = useState(false);
@@ -31,7 +31,7 @@ const Settings = () => {
   const postSettings = () => {
     setAllowSubmit(false);
     setLoading(true);
-    fetch('http://localhost:4000/limit', {
+    fetch('https://isumi-finance-back.herokuapp.com/limit', {
       method: 'PUT',
       headers: {
         Accept: 'application/json',

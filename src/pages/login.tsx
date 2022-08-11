@@ -12,7 +12,7 @@ import Images from '../utils/images';
 const Login = () => {
   const signIn = (event: any) => {
     event.preventDefault();
-    window.open('http://localhost:4000/auth/google', '_self');
+    window.open('https://isumi-finance-back.herokuapp.com/auth/google', '_self');
   };
 
   return (

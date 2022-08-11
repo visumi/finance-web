@@ -8,7 +8,7 @@ const Header = () => {
   const [user] = useAtom(userAtom);
 
   const logout = () => {
-    fetch('http://localhost:4000/auth/logout', { credentials: 'include' })
+    fetch('https://isumi-finance-back.herokuapp.com/auth/logout', { credentials: 'include' })
       .then((r) => r.json())
       .then((_) => {});
     window.open('/', '_self');

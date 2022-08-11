@@ -44,7 +44,7 @@ const NewModal: FC<NewModalProps> = ({ isOpen = false, closeModal }) => {
     setAllowSubmit(false);
     const formattedExpense: any = Object.assign({}, expense);
     formattedExpense.category = expense.category;
-    fetch('http://localhost:4000/expense', {
+    fetch('https://isumi-finance-back.herokuapp.com/expense', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -56,7 +56,7 @@ const NewModal: FC<NewModalProps> = ({ isOpen = false, closeModal }) => {
       setLoading(false);
       setAllowSubmit(true);
       if (res?.status === 200) {
-        mutate('http://localhost:4000/expense');
+        mutate('https://isumi-finance-back.herokuapp.com/expense');
         toast.success('Despesa criada!');
         closeModal();
       } else {

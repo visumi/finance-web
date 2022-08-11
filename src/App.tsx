@@ -16,7 +16,7 @@ const App = () => {
 
   const navigate = useNavigate();
 
-  const { data, error } = useSWR('http://localhost:4000/account', fetcher);
+  const { data, error } = useSWR('https://isumi-finance-back.herokuapp.com/account', fetcher);
 
   useEffect(() => {
     setUser(data);
