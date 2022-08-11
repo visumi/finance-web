@@ -1,11 +1,13 @@
 {
   "name": "finance-web",
+  "homepage": "https://visumi.github.io/finance-web",
   "private": true,
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.3",
