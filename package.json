@@ -1,6 +1,5 @@
 {
   "name": "finance-web",
-  "homepage": "https://visumi.github.io/finance-web",
   "private": true,
   "version": "0.0.0",
   "scripts": {
