@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { Coins, Gear, House, SignOut } from 'phosphor-react';
+import { Gear, House, SignOut } from 'phosphor-react';
 import { Link } from 'react-router-dom';
 import { userAtom } from '../utils/atoms';
 import images from '../utils/images';
@@ -8,10 +8,10 @@ const Header = () => {
   const [user] = useAtom(userAtom);
 
   const logout = () => {
-    fetch('https://isumi-finance-back.herokuapp.com/auth/logout', { credentials: 'include' })
+    fetch('https://isumi-finance-back.herokuapp.com/auth/logout', { credentials: 'include', method: 'POST' })
       .then((r) => r.json())
       .then((_) => {});
-    window.open('/', '_self');
+    window.open('/finance-web', '_self');
   };
 
   return (
