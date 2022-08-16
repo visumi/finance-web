@@ -44,7 +44,7 @@ const Expense: FC<ExpenseProps> = ({ data }) => {
   }, []);
 
   const deleteExpense = (id: number) => {
-    fetch(`https://isumi-finance-back.herokuapp.com/${id}`, {
+    fetch(`https://isumi-finance-back.herokuapp.com/expense/${id}`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
