@@ -85,21 +85,21 @@ const Settings = () => {
           onChange={(e) => setLimit(currencyMask(e).target.value)}
           className='w-1/2 px-2 py-1 text-lg font-medium text-purple-700 placeholder-purple-400 border-2 border-purple-300 rounded-lg outline-none'
         ></input>
-        <div className='flex justify-end mt-4'>
+        <div className='flex justify-end'>
           <button
             type='button'
             disabled={!allowSubmit}
             className={clsx(
               {
-                'justify-center px-4 py-2 text-sm font-medium transition ease-out duration-200 bg-purple-900 border hover:cursor-pointer border-transparent rounded-md text-purple-50 hover:bg-purple-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2':
+                'justify-center h-10 px-4 py-2 text-sm font-medium transition ease-out duration-200 bg-purple-900 border hover:cursor-pointer border-transparent rounded-md text-purple-50 hover:bg-purple-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2':
                   allowSubmit,
               },
               {
-                'justify-center px-4 py-2 text-sm font-medium bg-purple-900 opacity-30 border border-transparent rounded-md text-purple-50 hover:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2':
+                'justify-center h-10 px-4 py-2 text-sm font-medium bg-purple-900 opacity-30 border border-transparent rounded-md text-purple-50 hover:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2':
                   !allowSubmit,
               },
               {
-                'justify-center px-4 py-2 text-sm font-medium bg-purple-900 opacity-30 border border-transparent rounded-md text-purple-50 hover:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2':
+                'justify-center h-10 px-4 py-2 text-sm font-medium bg-purple-900 opacity-30 border border-transparent rounded-md text-purple-50 hover:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2':
                   loading,
               }
             )}

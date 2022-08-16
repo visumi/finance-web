@@ -1,4 +1,9 @@
-import { CreditCard, CurrencyCircleDollar, X } from 'phosphor-react';
+import {
+  CircleNotch,
+  CreditCard,
+  CurrencyCircleDollar,
+  X
+} from 'phosphor-react';
 import { FC, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { mutate } from 'swr';
@@ -14,7 +19,7 @@ interface ExpenseProps {
 }
 
 const Expense: FC<ExpenseProps> = ({ data }) => {
-  const [expense, setExpense] = useState({
+  const [_, setExpense] = useState({
     name: 'ERRO',
     category: -1,
     created_at: '',
@@ -38,12 +43,15 @@ const Expense: FC<ExpenseProps> = ({ data }) => {
     },
   });
 
+  const [deleting, setDeleting] = useState(false);
+
   useEffect(() => {
     setExpense(data);
     setCategory(categories.filter((c) => c.id === data.category)[0]);
   }, []);
 
   const deleteExpense = (id: number) => {
+    setDeleting(true);
     fetch(`https://isumi-finance-back.herokuapp.com/expense/${id}`, {
       method: 'DELETE',
       headers: {
@@ -58,18 +66,32 @@ const Expense: FC<ExpenseProps> = ({ data }) => {
       } else {
         toast.error('Erro ao remover despesa.');
       }
+      setDeleting(false);
     });
   };
 
   return (
     <ExpenseLayout category={category}>
       <div onClick={() => deleteExpense(data.id || -1)}>
-        <CategoryIcon
-          icon={category?.style?.icon}
-          bg={category?.style?.bg}
-          iconColor={category?.style?.iconColor}
-          deletable={true}
-        />
+        {!deleting && (
+          <CategoryIcon
+            icon={category?.style?.icon}
+            bg={category?.style?.bg}
+            iconColor={category?.style?.iconColor}
+            deletable={true}
+          />
+        )}
+        {deleting && (
+          <div
+            className={`flex w-12 h-12 group rounded-full transition ease-in-out duration-500  text-slate-700 bg-red-100`}
+          >
+            <CircleNotch
+              className='mx-auto my-auto text-red-800 animate-spin'
+              size={24}
+              weight='bold'
+            />
+          </div>
+        )}
       </div>
       <div className='flex flex-col pl-4'>
         <input
