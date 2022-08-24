@@ -48,7 +48,7 @@ const Expense: FC<ExpenseProps> = ({ data }) => {
   useEffect(() => {
     setExpense(data);
     setCategory(categories.filter((c) => c.id === data.category)[0]);
-  }, []);
+  }, [data]);
 
   const deleteExpense = (id: number) => {
     setDeleting(true);
