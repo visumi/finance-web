@@ -10,7 +10,7 @@ import { getMonth } from '../utils/getMonth';
 import Expense from './expense';
 
 const History: FC = () => {
-  const { data, error } = useSWR('https://isumi-finance-back.herokuapp.com/expense', fetcher);
+  const { data, error } = useSWR(`${import.meta.env.VITE_URL}/expense`, fetcher);
 
   const [, setExpenses] = useAtom(expensesAtom);
   const [renders, setRenders] = useState(0);

@@ -8,7 +8,7 @@ const Header = () => {
   const [user] = useAtom(userAtom);
 
   const logout = () => {
-    fetch('https://isumi-finance-back.herokuapp.com/auth/logout', { credentials: 'include', method: 'POST' })
+    fetch(`${import.meta.env.VITE_URL}/auth/logout`, { credentials: 'include', method: 'POST' })
       .then((r) => r.json())
       .then((_) => {});
     window.open('/finance-web', '_self');

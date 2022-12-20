@@ -9,7 +9,7 @@ import { currencyMaskString } from '../utils/currencyMask';
 import fetcher from '../utils/fetcher';
 
 const Meta: FC = () => {
-  const { data } = useSWR('https://isumi-finance-back.herokuapp.com/limit', fetcher);
+  const { data } = useSWR(`${import.meta.env.VITE_URL}/limit`, fetcher);
   const [expenses] = useAtom(expensesAtom);
   const [limit, setLimit] = useState(0);
   const [total, setTotal] = useState(0);
