@@ -22,8 +22,8 @@ const Meta: FC = () => {
   });
 
   useEffect(() => {
-    if (data?.rows[0].expense_limit) {
-      setLimit(convertPrice(data?.rows[0].expense_limit));
+    if (data?.expense_limit) {
+      setLimit(convertPrice(data?.expense_limit));
     }
     let sum = 0;
     expenses?.forEach((expense: Expense) => {

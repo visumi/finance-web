@@ -24,7 +24,7 @@ const Settings = () => {
 
   useEffect(() => {
     if (!limit) {
-      setLimit(data?.rows[0].expense_limit);
+      setLimit(data?.expense_limit);
     }
   }, [data]);
 
